@@ -48,7 +48,9 @@ public class ResetManager {
      * FIXME: it does nothing, you need to implement it :)
      */
     public void run(){
-
+        for (Resettable object: resettableList){
+            object.resetInstance();
+        }
     }
 
     /**
@@ -57,7 +59,7 @@ public class ResetManager {
      * @param resettable the interface instance
      */
     public void appendResetInstance(Resettable resettable){
-
+        resettableList.add(resettable);
     }
 
     /**
