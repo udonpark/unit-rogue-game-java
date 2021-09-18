@@ -23,6 +23,7 @@ public class EstusFlaskAction extends Action {
         else {
             estus.setCharges(estus.getCharges() - 1);
             actor.heal((int) (actorMaxHitPoints * 0.4));
+
         }
         return message;
     }

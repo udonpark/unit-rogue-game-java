@@ -1,6 +1,7 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
+import game.Vendor.VendorAction;
 import game.bonfire.BonfireAction;
 import game.enums.Abilities;
 import game.enums.Status;
@@ -20,11 +21,12 @@ public class Player extends Actor implements Soul, Resettable {
 	private BonfireAction bonfireAction;
 	private int currentSouls;
 	private VendorAction vendorAction;
+	private PlayerDeathAction playerDeath;
 	private selfharmAction selfharm;
 	private selfDeath death;
+	private Location prevLocation = null;
 
 	private int lastBonfireX = 38, lastBonfireY = 12;
-
 	/**
 	 * Constructor.
 	 *
@@ -32,6 +34,7 @@ public class Player extends Actor implements Soul, Resettable {
 	 * @param displayChar Character to represent the player in the UI
 	 * @param hitPoints   Player's starting number of hitpoints
 	 */
+	//TODO: initialize weapon for player
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
 		initializeInstanceSouls();
@@ -47,17 +50,19 @@ public class Player extends Actor implements Soul, Resettable {
 		this.bonfireAction = new BonfireAction(this,estus);
 		this.selfharm = new selfharmAction();
 		this.death = new selfDeath();
+		this.vendorAction = new VendorAction();
+		this.playerDeath = new PlayerDeathAction(this);
 	}
 
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		int[] playerLocation = {map.locationOf(this).x() , map.locationOf(this).y()};
-
 		actions.add(selfharm);
 		actions.add(death);
+		if(!this.isConscious() ||  map.locationOf(this).getGround().toString().equals("Valley")){
 
-		if(!this.isConscious()){
-			return new playerDeathAction();
+			playerDeath.setLastLocation(prevLocation);
+			return playerDeath;
 		}
 
 		if (hasCapability(Abilities.DRINK)){
@@ -80,6 +85,8 @@ public class Player extends Actor implements Soul, Resettable {
 
 		// return/print the console menu
 		System.out.println(printStatus());
+
+		prevLocation = map.locationOf(this);
 		return menu.showMenu(this, actions, display);
 	}
 
@@ -91,6 +98,8 @@ public class Player extends Actor implements Soul, Resettable {
 	@Override
 	public void transferSouls(Soul soulObject) {
 		//TODO: transfer Player's souls to another Soul's instance.
+		soulObject.addSouls(currentSouls);
+		this.subtractSouls(currentSouls);
 	}
 
 	@Override

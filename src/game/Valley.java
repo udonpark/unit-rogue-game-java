@@ -19,6 +19,11 @@ public class Valley extends Ground {
 	 */
 	@Override
 	public boolean canActorEnter(Actor actor){
-		return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Valley";
 	}
 }
