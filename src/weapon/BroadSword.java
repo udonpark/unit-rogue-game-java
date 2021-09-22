@@ -8,7 +8,4 @@ public class BroadSword extends WeaponItem {
         super("BroadSword", 'B', 30, "hits", 80);
     }
 
-
-
-
 }
