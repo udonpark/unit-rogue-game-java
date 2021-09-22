@@ -4,16 +4,19 @@ import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.WeaponAction;
 import edu.monash.fit2099.engine.WeaponItem;
+import game.Player;
 import game.skills.ChargeAction;
 import game.skills.WindSlashAction;
 
 public class StormRuler extends WeaponItem {
     private int charge;
+    private Player holder;
 //    private Actions actions;
 
-    public StormRuler(){
+    public StormRuler(Player player){
         super("Storm Ruler", 'S', 70, "hits", 70);
         this.charge = 0;
+        this.holder = player;
 //        this.actions = new Actions();
     }
 

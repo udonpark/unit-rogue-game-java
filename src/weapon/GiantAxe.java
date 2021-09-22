@@ -6,8 +6,10 @@ import edu.monash.fit2099.engine.WeaponItem;
 import game.skills.SpinAttackAction;
 
 public class GiantAxe extends WeaponItem {
-    public GiantAxe(){
+    private Actor holder;
+    public GiantAxe(Actor holder){
         super("Giant Axe", 'G', 50, "hits", 80);
+        this.holder = holder;
     }
 
     @Override

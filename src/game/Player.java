@@ -1,7 +1,7 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
-import game.Vendor.VendorAction;
+import game.Vendor.VendorActionHP;
 import game.bonfire.BonfireAction;
 import game.enums.Abilities;
 import game.enums.Status;
@@ -20,7 +20,7 @@ public class Player extends Actor implements Soul, Resettable {
 	private EstusFlaskAction estusAction;
 	private BonfireAction bonfireAction;
 	private int currentSouls;
-	private VendorAction vendorAction;
+	private VendorActionHP vendorActionHP;
 	private PlayerDeathAction playerDeath;
 	private selfharmAction selfharm;
 	private selfDeath death;
@@ -50,7 +50,7 @@ public class Player extends Actor implements Soul, Resettable {
 		this.bonfireAction = new BonfireAction(this,estus);
 		this.selfharm = new selfharmAction();
 		this.death = new selfDeath();
-		this.vendorAction = new VendorAction();
+		this.vendorActionHP = new VendorActionHP(this);
 		this.playerDeath = new PlayerDeathAction(this);
 	}
 
@@ -74,7 +74,7 @@ public class Player extends Actor implements Soul, Resettable {
 		}
 
 		if ((playerLocation[0]-37 + Math.abs(playerLocation[1] - 11) <= 1) && hasCapability(Abilities.BUY)){
-			actions.add(vendorAction);
+			actions.add(vendorActionHP);
 		}
 //		System.out.println(map.at(38,11).getGround());
 //		System.out.println(playerLocation[0] + " " + playerLocation[1]);
@@ -128,6 +128,10 @@ public class Player extends Actor implements Soul, Resettable {
 		// to fix: initilize weapon to broadsword
 		return String.format("Unkindled (%d/%d), holding %s, %d souls",hitPoints,maxHitPoints,"weapon",currentSouls);
 
+	}
+
+	public int getSouls(){
+		return this.currentSouls;
 	}
 
 	@Override
