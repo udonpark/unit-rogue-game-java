@@ -17,13 +17,19 @@ public class ChargeAction extends WeaponAction {
     public ChargeAction(StormRuler weaponItem) {
         super(weaponItem);
         this.weapon = weaponItem;
+
     }
 
     @Override
     public String execute(Actor actor, GameMap map) {
         actor.addCapability(Status.ATTACK_LIMITED);
         this.weapon.increaseCharge();
-        return String.format("Charging StormRuler, %d/3", this.weapon.getCharge());
+        String message = String.format("Charging StormRuler, %d/3", this.weapon.getCharge());
+        if (this.weapon.getCharge() == 3){
+            message += "/nCharging complete, Wind Slash available";
+            actor.removeCapability(Status.ATTACK_LIMITED);
+        }
+        return message;
     }
 
     @Override

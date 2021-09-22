@@ -10,6 +10,8 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.World;
 import game.Vendor.Vendor;
 import game.bonfire.Bonfire;
+import game.ground.Dirt;
+import game.ground.Floor;
 
 /**
  * The main class for the Jurassic World game.

@@ -1,9 +1,8 @@
 package game.skills;
 
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.WeaponAction;
-import edu.monash.fit2099.engine.WeaponItem;
+import edu.monash.fit2099.engine.*;
+import game.ground.Fire;
+
 
 public class EmberFormAction extends WeaponAction{
     /**
@@ -17,11 +16,34 @@ public class EmberFormAction extends WeaponAction{
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        return null;
+        Location floor;
+        int x = map.locationOf(actor).x();
+        int y = map.locationOf(actor).y();
+        floor = new Location(map, x-1, y);
+        if (floor.getGround().getDisplayChar() == 'F'){
+            floor.setGround(new Fire());
+        }
+
+        floor = new Location(map, x, y+1);
+        if (floor.getGround().getDisplayChar() == 'F'){
+            floor.setGround(new Fire());
+        }
+
+        floor = new Location(map, x+1, y);
+        if (floor.getGround().getDisplayChar() == 'F'){
+            floor.setGround(new Fire());
+        }
+
+        floor = new Location(map, x, y-1);
+        if (floor.getGround().getDisplayChar() == 'F'){
+            floor.setGround(new Fire());
+        }
+        return "Ember Form activated! YhormTheGiant uses Burn Ground!";
     }
 
     @Override
     public String menuDescription(Actor actor) {
-        return null;
+        return "Yhorm would burn adjacent floors";
     }
+
 }

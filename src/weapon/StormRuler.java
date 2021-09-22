@@ -36,7 +36,7 @@ public class StormRuler extends WeaponItem {
         this.charge++;
     }
 
-    public void decreaseCharge(){
-        this.charge--;
+    public void resetCharge(){
+        this.charge = 0;
     }
 }
