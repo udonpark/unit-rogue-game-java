@@ -10,7 +10,8 @@ public class GiantAxe extends WeaponItem {
         super("Giant Axe", 'G', 50, "hits", 80);
     }
 
-    public WeaponAction getActiveSkill() {  // It does not have a target, but a ranged attack
+    @Override
+    public WeaponAction getActiveSkill(Actor target, String direction) {  // It does not have a target, but a ranged attack
         return new SpinAttackAction(this);
     }
 
