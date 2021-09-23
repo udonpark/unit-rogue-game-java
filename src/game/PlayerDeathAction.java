@@ -4,7 +4,7 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
-import game.TokenOfSouls.TokenOfSouls;
+import game.TokenOfSoulsPackage.TokenOfSouls;
 
 public class PlayerDeathAction extends Action {
     Location lastLocation;
@@ -37,7 +37,7 @@ public class PlayerDeathAction extends Action {
             player.transferSouls(token);
         }
 
-        map.moveActor(actor, map.at(38,12));
+        map.moveActor(actor, map.at(player.getLastBonfireX(),player.getLastBonfireY()));
         ResetManager.getInstance().run();
         return "\n" +
                 "██╗░░░██╗░█████╗░██╗░░░██╗  ██████╗░██╗███████╗██████╗░  ███╗░░██╗░█████╗░░█████╗░██████╗░\n" +

@@ -3,6 +3,7 @@ package game.bonfire;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
+import game.Player;
 import game.ResetManager;
 import game.estusFlask.EstusFlask;
 
@@ -20,8 +21,7 @@ public class BonfireAction extends Action {
 
     @Override
     public String execute(Actor actor, GameMap map) {
-//        estusFlask.setCharges(estusFlask.getMaxCharges());
-//        actor.heal(99999);
+        ((Player) player).setLastBonfireX(map.locationOf(player).x()); ((Player) player).setLastBonfireY(map.locationOf(player).y());
         resetManager.run();
         return "Player rested";
     }

@@ -11,7 +11,7 @@ public class Bonfire extends Ground{
 
     @Override
     public boolean canActorEnter(Actor actor) {
-        return false;
+        return true;
     }
 
 

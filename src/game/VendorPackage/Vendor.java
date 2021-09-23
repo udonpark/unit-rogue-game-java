@@ -1,4 +1,4 @@
-package game.Vendor;
+package game.VendorPackage;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
@@ -10,7 +10,12 @@ public class Vendor extends Ground {
 
     @Override
     public boolean canActorEnter(Actor actor) {
-        return false;
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Vendor";
     }
 }
 

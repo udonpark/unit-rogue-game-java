@@ -8,7 +8,7 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.FancyGroundFactory;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.World;
-import game.Vendor.Vendor;
+import game.VendorPackage.Vendor;
 import game.bonfire.Bonfire;
 import game.ground.Dirt;
 import game.ground.Floor;

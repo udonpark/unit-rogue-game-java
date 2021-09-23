@@ -1,4 +1,4 @@
-package game.Vendor;
+package game.VendorPackage;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
@@ -24,6 +24,6 @@ public class VendorActionHP extends Action {
 
     @Override
     public String hotkey() {
-        return "V1";
+        return "o";
     }
 }

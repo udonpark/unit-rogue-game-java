@@ -1,7 +1,9 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
-import game.Vendor.VendorActionHP;
+import game.VendorPackage.VendorActionBS;
+import game.VendorPackage.VendorActionGA;
+import game.VendorPackage.VendorActionHP;
 import game.bonfire.BonfireAction;
 import game.enums.Abilities;
 import game.enums.Status;
@@ -9,6 +11,7 @@ import game.estusFlask.EstusFlask;
 import game.estusFlask.EstusFlaskAction;
 import game.interfaces.Resettable;
 import game.interfaces.Soul;
+import weapon.BroadSword;
 
 /**
  * Class representing the Player.
@@ -20,13 +23,18 @@ public class Player extends Actor implements Soul, Resettable {
 	private EstusFlaskAction estusAction;
 	private BonfireAction bonfireAction;
 	private int currentSouls;
+
 	private VendorActionHP vendorActionHP;
+	private VendorActionBS vendorActionBS;
+	private VendorActionGA vendorActionGA;
+
 	private PlayerDeathAction playerDeath;
 	private selfharmAction selfharm;
 	private selfDeath death;
 	private Location prevLocation = null;
+//	private WeaponItem playerWeapon;
 
-	private int lastBonfireX = 38, lastBonfireY = 12;
+	private int lastBonfireX = 38, lastBonfireY = 11;
 	/**
 	 * Constructor.
 	 *
@@ -51,7 +59,11 @@ public class Player extends Actor implements Soul, Resettable {
 		this.selfharm = new selfharmAction();
 		this.death = new selfDeath();
 		this.vendorActionHP = new VendorActionHP(this);
+		this.vendorActionBS = new VendorActionBS(this);
+		this.vendorActionGA = new VendorActionGA(this);
 		this.playerDeath = new PlayerDeathAction(this);
+		this.inventory.add(new BroadSword(this));
+
 	}
 
 	@Override
@@ -69,30 +81,35 @@ public class Player extends Actor implements Soul, Resettable {
 			actions.add(estusAction);
 		}
 
-		if ((playerLocation[0]-38 + Math.abs(playerLocation[1] - 11) <= 1) && hasCapability(Abilities.REST)){
+		if (map.at(playerLocation[0],playerLocation[1]).getGround().toString().equals("Bonfire") && hasCapability(Abilities.REST)){
 			actions.add(bonfireAction);
 		}
 
-		if ((playerLocation[0]-37 + Math.abs(playerLocation[1] - 11) <= 1) && hasCapability(Abilities.BUY)){
-			actions.add(vendorActionHP);
+		if (map.at(playerLocation[0],playerLocation[1]).getGround().toString().equals("Vendor") && hasCapability(Abilities.BUY)){
+			if (this.currentSouls >= 200){
+				actions.add(vendorActionHP);
+			}
+			if (this.currentSouls >= 500){
+				actions.add(vendorActionBS);
+				actions.add(vendorActionGA);
+			}
+
 		}
-//		System.out.println(map.at(38,11).getGround());
-//		System.out.println(playerLocation[0] + " " + playerLocation[1]);
 
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 
 		// return/print the console menu
-		System.out.println(printStatus());
-
+		display.println(printStatus());
+		estusAction.setActorMaxHitPoints(maxHitPoints);
 		prevLocation = map.locationOf(this);
 		return menu.showMenu(this, actions, display);
 	}
 
 	@Override
 	public void initializeInstanceSouls() {
-		currentSouls = 0;
+		currentSouls = 1500;
 	}
 
 	@Override
@@ -125,8 +142,7 @@ public class Player extends Actor implements Soul, Resettable {
 	}
 
 	public String printStatus() {
-		// to fix: initilize weapon to broadsword
-		return String.format("Unkindled (%d/%d), holding %s, %d souls",hitPoints,maxHitPoints,"weapon",currentSouls);
+		return String.format("Unkindled (%d/%d), holding %s, %d souls",hitPoints,maxHitPoints,getWeapon(),currentSouls);
 
 	}
 
@@ -143,4 +159,22 @@ public class Player extends Actor implements Soul, Resettable {
 	public boolean isExist() {
 		return true;
 	}
+
+	public int getLastBonfireX() {
+		return lastBonfireX;
+	}
+
+	public void setLastBonfireX(int lastBonfireX) {
+		this.lastBonfireX = lastBonfireX;
+	}
+
+	public int getLastBonfireY() {
+		return lastBonfireY;
+	}
+
+	public void setLastBonfireY(int lastBonfireY) {
+		this.lastBonfireY = lastBonfireY;
+	}
+
+
 }

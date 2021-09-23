@@ -1,4 +1,5 @@
-package game.Vendor;
+package game.VendorPackage;
+
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
@@ -6,28 +7,28 @@ import edu.monash.fit2099.engine.GameMap;
 import game.Player;
 import game.SwapWeaponAction;
 import weapon.BroadSword;
-import weapon.GiantAxe;
 
-public class VendorActionGA extends Action {
+
+public class VendorActionBS extends Action {
     private final Player player;
-    public VendorActionGA(Player player){
+    public VendorActionBS(Player player){
         this.player = player;
     }
     @Override
     public String execute(Actor actor, GameMap map) {
-        SwapWeaponAction swap = new SwapWeaponAction(new GiantAxe(actor));
+        SwapWeaponAction swap = new SwapWeaponAction(new BroadSword(actor));
         swap.execute(actor, map);
         this.player.subtractSouls(500);
-        return "Paid 1000 Souls and purchased Giant Axe)";
+        return "Paid 500 Souls and purchased BroadSword)";
     }
 
     @Override
     public String menuDescription(Actor actor) {
-        return "Buy Giant Axe for 1000 Souls from the Vendor";
+        return "Buy BroadSword for 500 Souls from the Vendor";
     }
 
     @Override
     public String hotkey() {
-        return "V3";
+        return "u";
     }
 }

@@ -1,4 +1,4 @@
-package game.TokenOfSouls;
+package game.TokenOfSoulsPackage;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
