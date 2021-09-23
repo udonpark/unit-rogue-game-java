@@ -45,7 +45,7 @@ public class Player extends Actor implements Soul, Resettable {
 	//TODO: initialize weapon for player
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
-		initializeInstanceSouls();
+		resetInstanceSouls();
 		registerInstance();
 
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
@@ -53,38 +53,54 @@ public class Player extends Actor implements Soul, Resettable {
 		this.addCapability(Abilities.DRINK);
 		this.addCapability(Abilities.BUY);
 
+		//Initialize Estus Flask and action
 		this.estus = new EstusFlask(3,3);
 		this.estusAction = new EstusFlaskAction(estus,maxHitPoints);
-		this.bonfireAction = new BonfireAction(this,estus);
-		this.selfharm = new selfharmAction();
-		this.death = new selfDeath();
+
+		//Initialize the bonfire action, pass estus to it so the correct estus flask class is refilled
+		this.bonfireAction = new BonfireAction(this);
+
+		//Initialize the vendor actions available to player
 		this.vendorActionHP = new VendorActionHP(this);
 		this.vendorActionBS = new VendorActionBS(this);
 		this.vendorActionGA = new VendorActionGA(this);
+
+		//In the case of death this action class is executed to handle all death events
 		this.playerDeath = new PlayerDeathAction(this);
+
+		//Initializes the inventory of the player, specifically to add its weapon
 		this.inventory.add(new BroadSword(this));
 
+		//Classes for testing, TODO: comment out later
+		this.selfharm = new selfharmAction();
+		this.death = new selfDeath();
 	}
 
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+		// Retrieve the player location after each turn, useful when processing certain conditions
 		int[] playerLocation = {map.locationOf(this).x() , map.locationOf(this).y()};
+
+		//Classes for testing, TODO: comment out later
 		actions.add(selfharm);
 		actions.add(death);
-		if(!this.isConscious() ||  map.locationOf(this).getGround().toString().equals("Valley")){
 
+		//Checks if player is dead, either by checking the hp or by checking if they have stepped on a Valley tile.
+		if(!this.isConscious() ||  map.locationOf(this).getGround().toString().equals("Valley")){
 			playerDeath.setLastLocation(prevLocation);
 			return playerDeath;
 		}
 
+		//Checks if player is allowed to drink estus flask before displaying the option
 		if (hasCapability(Abilities.DRINK)){
 			actions.add(estusAction);
 		}
 
+		//checks if player is on the bonfire and has the capability to rest before displaying option
 		if (map.at(playerLocation[0],playerLocation[1]).getGround().toString().equals("Bonfire") && hasCapability(Abilities.REST)){
 			actions.add(bonfireAction);
 		}
-
+		//checks if player is on the vendor and has the capability to buy before checking the souls of the player to determine what can be bought
 		if (map.at(playerLocation[0],playerLocation[1]).getGround().toString().equals("Vendor") && hasCapability(Abilities.BUY)){
 			if (this.currentSouls >= 200){
 				actions.add(vendorActionHP);
@@ -102,16 +118,28 @@ public class Player extends Actor implements Soul, Resettable {
 
 		// return/print the console menu
 		display.println(printStatus());
+
+		// Hp restored by estus depends on max Hp so this is used to update it
 		estusAction.setActorMaxHitPoints(maxHitPoints);
+
+		// Tracks the previous tile the player was on
 		prevLocation = map.locationOf(this);
+
 		return menu.showMenu(this, actions, display);
 	}
 
+	/**
+	 * Method used to set a variable within a Soul class that represents its souls to 0
+	 */
 	@Override
-	public void initializeInstanceSouls() {
+	public void resetInstanceSouls() {
 		currentSouls = 1500;
 	}
 
+	/**
+	 * Transfers all souls of the caller to the soul object specified in the parameter
+	 * @param soulObject a target souls.
+	 */
 	@Override
 	public void transferSouls(Soul soulObject) {
 		//TODO: transfer Player's souls to another Soul's instance.
@@ -119,6 +147,11 @@ public class Player extends Actor implements Soul, Resettable {
 		this.subtractSouls(currentSouls);
 	}
 
+	/**
+	 * Method to increment the number of souls in a soul object
+	 * @param souls number of souls to be incremented.
+	 * @return true if successful, false otherwise
+	 */
 	@Override
 	public boolean addSouls(int souls) {
 		if (souls > 0){
@@ -129,6 +162,11 @@ public class Player extends Actor implements Soul, Resettable {
 
 	}
 
+	/**
+	 * Method to decrement the number of souls in a soul object
+	 * @param souls number souls to be deducted
+	 * @return true if successful, false otherwise
+	 */
 	@Override
 	public boolean subtractSouls(int souls) {
 		if (souls > 0 ){
@@ -141,37 +179,66 @@ public class Player extends Actor implements Soul, Resettable {
 		return false;
 	}
 
+	/**
+	 * Method that returns a string showing the player's overall health, weapon and number of souls
+	 * @return string representing various pieces of information about the player
+	 */
 	public String printStatus() {
 		return String.format("Unkindled (%d/%d), holding %s, %d souls",hitPoints,maxHitPoints,getWeapon(),currentSouls);
 
 	}
 
+	/**
+	 * Getter for the player's soul/currency variable
+	 * @return integer representing the number of souls
+	 */
 	public int getSouls(){
 		return this.currentSouls;
 	}
 
+	/**
+	 * Method that resets the player's hit points to full.
+	 */
 	@Override
 	public void resetInstance() {
 		this.heal(maxHitPoints);
 	}
 
+	/**
+	 * Checks if a class exists or not when resetManager is run
+	 * @return true if a class does exist
+	 */
 	@Override
 	public boolean isExist() {
 		return true;
 	}
 
+	/**
+	 * method that returns the last coordinate bonfire rested at
+	 * @return integer representing the x of last bonfire rested at
+	 */
 	public int getLastBonfireX() {
 		return lastBonfireX;
 	}
 
+	/**
+	 * Method to set a new last bonfire location
+	 * @param lastBonfireX the x value of the new last bonfire location
+	 */
 	public void setLastBonfireX(int lastBonfireX) {
 		this.lastBonfireX = lastBonfireX;
 	}
-
+	/**
+	 * method that returns the coordinate last bonfire rested at
+	 * @return integer representing the y of last bonfire rested at
+	 */
 	public int getLastBonfireY() {
 		return lastBonfireY;
 	}
-
+	/**
+	 * Method to set a new last bonfire location
+	 * @param lastBonfireY the y value of the new last bonfire location
+	 */
 	public void setLastBonfireY(int lastBonfireY) {
 		this.lastBonfireY = lastBonfireY;
 	}

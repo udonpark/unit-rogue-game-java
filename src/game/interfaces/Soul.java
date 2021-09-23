@@ -9,7 +9,7 @@ import edu.monash.fit2099.engine.addons.DesignOSoulsAddOn;
  */
 public interface Soul {
 
-    void initializeInstanceSouls();
+    void resetInstanceSouls();
     /**
      * Transfer current instance's souls to another Soul instance.
      * @param soulObject a target souls.

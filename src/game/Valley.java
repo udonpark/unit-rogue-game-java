@@ -13,7 +13,7 @@ public class Valley extends Ground {
 	}
 
 	/**
-	 * FIXME: At the moment, the Player cannot enter it. It is boring.
+	 * Allows player ot enter valley tile
 	 * @param actor the Actor to check
 	 * @return false or actor cannot enter.
 	 */
@@ -22,6 +22,10 @@ public class Valley extends Ground {
 		return true;
 	}
 
+	/**
+	 * returns a string representing the valley class
+	 * @return string representing valley class
+	 */
 	@Override
 	public String toString() {
 		return "Valley";
