@@ -32,6 +32,7 @@ public class BonfireAction extends Action {
         //sets the location of last bonfire to the bonfire currently rested at by the player
         ((Player) player).setLastBonfireX(map.locationOf(player).x()); ((Player) player).setLastBonfireY(map.locationOf(player).y());
         resetManager.run();
+
         return "Player rested";
     }
 
@@ -53,4 +54,5 @@ public class BonfireAction extends Action {
     public String hotkey() {
         return "e";
     }
+
 }

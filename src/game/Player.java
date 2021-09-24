@@ -21,18 +21,12 @@ public class Player extends Actor implements Soul, Resettable {
 	private final Menu menu = new Menu();
 	private EstusFlask estus;
 	private EstusFlaskAction estusAction;
-	private BonfireAction bonfireAction;
 	private int currentSouls;
-
-	private VendorActionHP vendorActionHP;
-	private VendorActionBS vendorActionBS;
-	private VendorActionGA vendorActionGA;
 
 	private PlayerDeathAction playerDeath;
 	private selfharmAction selfharm;
 	private selfDeath death;
 	private Location prevLocation = null;
-//	private WeaponItem playerWeapon;
 
 	private int lastBonfireX = 38, lastBonfireY = 11;
 	/**
@@ -57,13 +51,10 @@ public class Player extends Actor implements Soul, Resettable {
 		this.estus = new EstusFlask(3,3);
 		this.estusAction = new EstusFlaskAction(estus,maxHitPoints);
 
-		//Initialize the bonfire action, pass estus to it so the correct estus flask class is refilled
-		this.bonfireAction = new BonfireAction(this);
-
 		//Initialize the vendor actions available to player
-		this.vendorActionHP = new VendorActionHP(this);
-		this.vendorActionBS = new VendorActionBS(this);
-		this.vendorActionGA = new VendorActionGA(this);
+//		this.vendorActionHP = new VendorActionHP(this);
+//		this.vendorActionBS = new VendorActionBS(this);
+//		this.vendorActionGA = new VendorActionGA(this);
 
 		//In the case of death this action class is executed to handle all death events
 		this.playerDeath = new PlayerDeathAction(this);
@@ -74,6 +65,7 @@ public class Player extends Actor implements Soul, Resettable {
 		//Classes for testing, TODO: comment out later
 		this.selfharm = new selfharmAction();
 		this.death = new selfDeath();
+
 	}
 
 	@Override
@@ -94,22 +86,6 @@ public class Player extends Actor implements Soul, Resettable {
 		//Checks if player is allowed to drink estus flask before displaying the option
 		if (hasCapability(Abilities.DRINK)){
 			actions.add(estusAction);
-		}
-
-		//checks if player is on the bonfire and has the capability to rest before displaying option
-		if (map.at(playerLocation[0],playerLocation[1]).getGround().toString().equals("Bonfire") && hasCapability(Abilities.REST)){
-			actions.add(bonfireAction);
-		}
-		//checks if player is on the vendor and has the capability to buy before checking the souls of the player to determine what can be bought
-		if (map.at(playerLocation[0],playerLocation[1]).getGround().toString().equals("Vendor") && hasCapability(Abilities.BUY)){
-			if (this.currentSouls >= 200){
-				actions.add(vendorActionHP);
-			}
-			if (this.currentSouls >= 500){
-				actions.add(vendorActionBS);
-				actions.add(vendorActionGA);
-			}
-
 		}
 
 		// Handle multi-turn Actions
