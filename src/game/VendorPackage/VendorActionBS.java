@@ -19,7 +19,7 @@ public class VendorActionBS extends Action {
         SwapWeaponAction swap = new SwapWeaponAction(new BroadSword(actor));
         swap.execute(actor, map);
         this.player.subtractSouls(500);
-        return "Paid 500 Souls and purchased BroadSword)";
+        return "Paid 500 Souls and purchased BroadSword";
     }
 
     @Override
