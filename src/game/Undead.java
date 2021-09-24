@@ -1,12 +1,7 @@
 package game;
 
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actions;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Display;
-import edu.monash.fit2099.engine.DoNothingAction;
-import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.*;
 import game.enums.Status;
 import game.interfaces.Behaviour;
 
@@ -19,12 +14,14 @@ public class Undead extends Actor {
 	// Will need to change this to a collection if Undeads gets additional Behaviours.
 	private ArrayList<Behaviour> behaviours = new ArrayList<>();
 
+	private Actor player;
+
 	/** 
 	 * Constructor.
 	 * All Undeads are represented by an 'u' and have 30 hit points.
 	 * @param name the name of this Undead
 	 */
-	public Undead(String name) {
+	public Undead(String name, Actor player) {
 		super(name, 'u', 50);
 		behaviours.add(new WanderBehaviour());
 	}
@@ -56,6 +53,8 @@ public class Undead extends Actor {
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		// loop through all behaviours
+
+
 		for(Behaviour Behaviour : behaviours) {
 			Action action = Behaviour.getAction(this, map);
 			if (action != null)
@@ -64,4 +63,8 @@ public class Undead extends Actor {
 		return new DoNothingAction();
 	}
 
+
+	private int distance(Location a, Location b) {
+		return Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y());
+	}
 }
