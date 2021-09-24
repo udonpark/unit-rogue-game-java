@@ -18,23 +18,24 @@ import game.ground.Floor;
  *
  */
 public class Application {
-
+	private static Actor player;
+	private static GameMap gameMap;
 	public static void main(String[] args) {
 
 			World world = new World(new Display());
 
-			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(), new Bonfire(),new Vendor());
+			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(), new Bonfire(),new Vendor(), new Cemetery());
 
 			List<String> map = Arrays.asList(
 					"..++++++..+++...........................++++......+++.................+++.......",
 					"........+++++..............................+++++++.................+++++........",
 					"...........+++.......................................................+++++......",
 					"........................................................................++......",
-					".........................................................................+++....",
+					"...................c.....................................................+++....",
 					"............................+.............................................+++...",
 					".............................+++.......++++.....................................",
 					".............................++.......+......................++++...............",
-					".............................................................+++++++............",
+					"................c............................................+++++++............",
 					"..................................###___###...................+++...............",
 					"..................................#_______#......................+++............",
 					"...........++.....................#__FB___#.......................+.............",
@@ -52,10 +53,11 @@ public class Application {
 					"...+.__..+...#+++...........................................................+...",
 					"...+.....+._.#.+.....+++++...++..............................................++.",
 					"___.......___#.++++++++++++++.+++.............................................++");
-			GameMap gameMap = new GameMap(groundFactory, map);
+			gameMap = new GameMap(groundFactory, map);
 			world.addGameMap(gameMap);
 
-			Actor player = new Player("Unkindled (Player)", '@', 100);
+
+			player = new Player("Unkindled (Player)", '@', 100);
 			world.addPlayer(player, gameMap.at(38, 12));
 
 			// Place Yhorm the Giant/boss in the map
@@ -63,8 +65,16 @@ public class Application {
 
 			// Place a Hollow in the the map
 			// FIXME: the Undead should be generated from the Cemetery
-			gameMap.at(32, 7).addActor(new Undead("Undead",player));
+//			gameMap.at(32, 7).addActor(new Undead("Undead",player));
 			world.run();
 
+	}
+
+	public static Actor getPlayer() {
+		return player;
+	}
+
+	public static GameMap getGameMap() {
+		return gameMap;
 	}
 }

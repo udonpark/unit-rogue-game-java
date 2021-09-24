@@ -18,6 +18,6 @@ public class selfharmAction extends Action {
 
     @Override
     public String hotkey() {
-        return "p";
+        return "n";
     }
 }

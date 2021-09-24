@@ -18,6 +18,6 @@ public class selfDeath extends Action {
 
     @Override
     public String hotkey() {
-        return "o";
+        return "m";
     }
 }

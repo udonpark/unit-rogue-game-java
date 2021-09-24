@@ -6,9 +6,16 @@ public class Bonfire extends Ground{
     /**
      * Constructor for Bonfire
      */
+
+    private BonfireAction bonfireAction;
     public Bonfire(){
         super('B');
+    }
 
+    @Override
+    public void tick(Location location) {
+
+        super.tick(location);
     }
 
     /**
@@ -28,5 +35,20 @@ public class Bonfire extends Ground{
     @Override
     public String toString() {
         return "Bonfire";
+    }
+
+    /**
+     * Method to give player the rest action
+     * @param actor the Actor acting
+     * @param location the current Location
+     * @param direction the direction of the Ground from the Actor
+     * @return returns actions available to player
+     */
+    @Override
+    public Actions allowableActions(Actor actor, Location location, String direction) {
+        Actions actions = super.allowableActions(actor, location, direction);
+        bonfireAction = new BonfireAction(actor);
+        actions.add(bonfireAction);
+        return actions;
     }
 }

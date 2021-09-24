@@ -1,5 +1,7 @@
 package game;
 
+import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.GameMap;
 import game.interfaces.Resettable;
 
 import java.util.ArrayList;
@@ -48,6 +50,7 @@ public class ResetManager {
      * FIXME: it does nothing, you need to implement it :)
      */
     public void run(){
+        instance.cleanUp();
         for (Resettable object: resettableList){
             object.resetInstance();
         }
