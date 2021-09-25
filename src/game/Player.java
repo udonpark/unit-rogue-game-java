@@ -220,5 +220,8 @@ public class Player extends Actor implements Soul, Resettable {
 		this.lastBonfireY = lastBonfireY;
 	}
 
-
+	@Override
+	public String toString() {
+		return "Unkindled";
+	}
 }

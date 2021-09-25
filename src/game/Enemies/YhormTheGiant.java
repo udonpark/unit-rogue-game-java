@@ -24,5 +24,10 @@ public class YhormTheGiant extends LordOfCinder {
 
 
     }
+
+    @Override
+    public String toString() {
+        return "Yhorm";
+    }
 }
 

@@ -81,9 +81,9 @@ public class Undead extends Actor implements Resettable {
 		return actions;
 	}
 
-
-
-
-
+	@Override
+	public String toString() {
+		return "Skeleton";
+	}
 }
 
