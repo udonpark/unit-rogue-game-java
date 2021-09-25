@@ -157,7 +157,7 @@ public abstract class Actor implements Capable, Printable, DesignOSoulsAddOn, Ma
 	 * inventory. Otherwise, returns the Actor's natural fighting equipment e.g.
 	 * fists.
 	 *
-	 * @return the Actor's weapon or natural
+	 * @return
 	 */
 	public Weapon getWeapon() {
 		for (Item item : inventory) {

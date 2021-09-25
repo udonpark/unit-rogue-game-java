@@ -1,16 +1,17 @@
-package game;
-
+package game.Terrains;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
+import game.Player;
 import game.Enemies.Undead;
 
 import java.util.Random;
 
 public class Cemetery extends Ground {
     private GameMap map;
+    private Player player;
 
     public Cemetery() {
         super('c');
@@ -35,5 +36,8 @@ public class Cemetery extends Ground {
                 location.addActor(new Undead("Undead"));
             }catch (Exception e){;}
         }
+
+
+
     }
 }

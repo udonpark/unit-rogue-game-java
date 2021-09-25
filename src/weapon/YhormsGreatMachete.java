@@ -1,7 +1,7 @@
 package weapon;
 
 import edu.monash.fit2099.engine.WeaponItem;
-import game.YhormTheGiant;
+import game.Enemies.YhormTheGiant;
 
 public class YhormsGreatMachete extends WeaponItem {
     private YhormTheGiant yhorm;
