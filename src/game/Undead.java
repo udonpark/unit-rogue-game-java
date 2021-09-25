@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.*;
 import game.enums.Status;
 import game.interfaces.Behaviour;
 import game.interfaces.Resettable;
+import weapon.GiantAxe;
 
 import java.util.ArrayList;
 
