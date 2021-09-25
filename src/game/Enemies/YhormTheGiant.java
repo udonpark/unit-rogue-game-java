@@ -32,7 +32,7 @@ public class YhormTheGiant extends LordOfCinder {
             this.removeCapability(Status.STUNNED);
             return new DoNothingAction();
         }
-        if(this.hitPoints <= 250){
+        if(this.hitPoints < 250){
             this.addCapability(Status.RAGE_MODE);
         }
         if(distance(map.locationOf(this), map.locationOf(player)) <= 1){
