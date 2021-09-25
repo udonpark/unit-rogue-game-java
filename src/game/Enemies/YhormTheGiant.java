@@ -29,6 +29,7 @@ public class YhormTheGiant extends LordOfCinder {
             player.addSouls(5000);
         }
         if (this.hasCapability(Status.STUNNED)){
+            this.removeCapability(Status.STUNNED);
             return new DoNothingAction();
         }
         if(this.hitPoints <= 250){
