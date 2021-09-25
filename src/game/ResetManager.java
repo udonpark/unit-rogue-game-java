@@ -70,6 +70,13 @@ public class ResetManager {
      * FIXME: it does nothing, you need to implement it :)
      */
     private void cleanUp(){
-
+        ArrayList<Resettable> toBeRemoved = new ArrayList<>();
+        for (Resettable object: resettableList){
+            if(!object.isExist()){
+                Application.getGameMap().removeActor((Actor) object);
+                toBeRemoved.add(object);
+            }
+        }
+        resettableList.removeAll(toBeRemoved);
     }
 }
