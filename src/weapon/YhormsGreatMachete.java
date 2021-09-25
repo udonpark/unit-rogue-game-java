@@ -3,7 +3,7 @@ package weapon;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.WeaponItem;
-import game.YhormTheGiant;
+import game.Enemies.YhormTheGiant;
 import game.enums.Status;
 import game.skills.EmberFormAction;
 

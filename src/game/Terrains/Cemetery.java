@@ -31,7 +31,7 @@ public class Cemetery extends Ground {
     public void tick(Location location) {
         super.tick(location);
         Random rand = new Random();
-        if (rand.nextInt(3) == 1) {
+        if (rand.nextInt(4) == 1) {
             try{
                 location.addActor(new Undead("Undead"));
             }catch (Exception e){;}

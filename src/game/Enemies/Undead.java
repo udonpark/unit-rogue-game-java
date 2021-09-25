@@ -41,7 +41,10 @@ public class Undead extends Actor implements Resettable {
 		return false;
 	}
 
-
+	@Override
+	protected IntrinsicWeapon getIntrinsicWeapon() {
+		return new IntrinsicWeapon(20, "punches");
+	}
 
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 //         loop through all behaviours
@@ -51,6 +54,7 @@ public class Undead extends Actor implements Resettable {
 		}
 		if(distance(map.locationOf(this), map.locationOf(player)) <= 1){
 			return new AttackAction(player, "North");
+
 		}
 		if (distance(map.locationOf(this), map.locationOf(player)) <= 2) {
 			behaviours.remove(0);

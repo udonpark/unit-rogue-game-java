@@ -22,11 +22,11 @@ public class Skeleton extends Actor implements Resettable {
         this.player = Application.getPlayer();
         registerInstance();
         Random rand = new Random();
-        if(rand.nextInt(1) == 0){
-            super.addItemToInventory(BroadSword);
+        if(rand.nextInt(2) == 1){
+            super.addItemToInventory(GiantAxe);
         }
         else{
-            super.addItemToInventory(GiantAxe);
+            super.addItemToInventory(BroadSword);
         }
     }
 
@@ -58,7 +58,7 @@ public class Skeleton extends Actor implements Resettable {
             }
             else {
                 map.removeActor(this);
-
+                player.addSouls(250);
             }
 
         }
@@ -66,6 +66,7 @@ public class Skeleton extends Actor implements Resettable {
             int damage = inventory.get(0).asWeapon().damage();
             player.hurt(damage);
         }
+
         if (distance(map.locationOf(this), map.locationOf(player)) <= 2) {
             behaviours.remove(0);
             behaviours.add(new FollowBehaviour(player));
