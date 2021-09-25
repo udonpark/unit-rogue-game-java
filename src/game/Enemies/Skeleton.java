@@ -57,7 +57,7 @@ public class Skeleton extends Actor implements Resettable {
         if (!this.isConscious()) {
             int counter = 0;
             Random rand = new Random();
-            if (rand.nextInt(1) == 0 && counter < 1){
+            if (rand.nextInt(2) == 0 && counter < 1){
                 this.heal(100);
                 counter ++;
             }

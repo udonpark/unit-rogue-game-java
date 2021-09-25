@@ -61,8 +61,8 @@ public class Application {
 		world.addGameMap(gameMap);
 
 
-		player = new Player("Unkindled (Player)", '@', 100000000);
-		world.addPlayer(player, gameMap.at(6, 20));
+		player = new Player("Unkindled (Player)", '@', 500);
+		world.addPlayer(player, gameMap.at(38, 12));
 
 		// Place Yhorm the Giant/boss in the map
 //		gameMap.at(6, 25).addActor(new LordOfCinder("Yhorm the Giant", 'Y', 500));
