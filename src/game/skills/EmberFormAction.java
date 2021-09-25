@@ -36,7 +36,7 @@ public class EmberFormAction extends WeaponAction{
 //        if (floor.getGround().getDisplayChar() == '.'){
 //            floor.addItem(new Fire());
         }
-        return "Ember Form activated! YhormTheGiant uses Burn Ground!";
+        return "Ember Form activated! Yhorm The Giant uses Burn Ground!";
     }
 
     @Override

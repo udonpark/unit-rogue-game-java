@@ -59,7 +59,7 @@ public class SpinAttackAction extends WeaponAction {
 
     @Override
     public String hotkey() {
-        return "Spin";
+        return "s";
     }
 
 //    public ArrayList<Location> getAdjacent(GameMap map, int x, int y){

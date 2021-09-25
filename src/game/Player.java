@@ -74,6 +74,14 @@ public class Player extends Actor implements Soul, Resettable {
 		// Retrieve the player location after each turn, useful when processing certain conditions
 		int[] playerLocation = {map.locationOf(this).x() , map.locationOf(this).y()};
 
+		// Code for restricting player from attacking. removing this Status will solve, due to how this system works.
+		if (this.hasCapability(Status.ATTACK_LIMITED)){
+			this.removeCapability(Status.HOSTILE_TO_ENEMY);
+		}
+		else{
+			this.addCapability(Status.HOSTILE_TO_ENEMY);
+		}
+
 		//Classes for testing, TODO: comment out later
 		actions.add(selfharm);
 		actions.add(death);
