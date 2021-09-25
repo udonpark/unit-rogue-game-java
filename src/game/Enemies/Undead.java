@@ -49,13 +49,10 @@ public class Undead extends Actor implements Resettable {
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 //         loop through all behaviours
 		Random rand = new Random();
-		if (!this.isConscious()) {
-			map.removeActor(this);
-			player.addSouls(50);
-		}
-		if(rand.nextInt(10) == 5){
-			map.removeActor(this);
-		}
+//		if (!this.isConscious()) {
+//			map.removeActor(this);
+//			player.addSouls(50);
+//		}
 		if(distance(map.locationOf(this), map.locationOf(player)) <= 1){
 			return new AttackAction(player, "North");
 
@@ -71,6 +68,9 @@ public class Undead extends Actor implements Resettable {
 			Action action = Behaviour.getAction(this, map);
 			if (action != null)
 				return action;
+		}
+		if(rand.nextInt(10) == 5){
+			map.removeActor(this);
 		}
 		return new DoNothingAction();
 	}
@@ -91,7 +91,7 @@ public class Undead extends Actor implements Resettable {
 
 	@Override
 	public String toString() {
-		return "Skeleton";
+		return "Undead";
 	}
 }
 

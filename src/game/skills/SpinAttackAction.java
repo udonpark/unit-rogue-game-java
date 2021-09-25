@@ -1,6 +1,8 @@
 package game.skills;
 
 import edu.monash.fit2099.engine.*;
+import game.Enemies.Skeleton;
+import game.Enemies.Undead;
 import game.Player;
 
 
