@@ -55,12 +55,16 @@ public class AttackAction extends Action {
 			Actions dropActions = new Actions();
 			// drop all items
 			for (Item item : target.getInventory())
-				dropActions.add(item.getDropAction(actor));
+				if (!(target instanceof Player)) {
+					dropActions.add(item.getDropAction(actor));
+				}
 			for (Action drop : dropActions)
 				drop.execute(target, map);
 			// remove actor
 			//TODO: In A1 scenario, you must not remove a Player from the game yet. What to do, then?
-			map.removeActor(target);
+			if (!(target instanceof Player)){
+				map.removeActor(target);
+			}
 			result += System.lineSeparator() + target + " is killed.";
 		}
 

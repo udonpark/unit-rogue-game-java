@@ -51,6 +51,7 @@ public class Undead extends Actor implements Resettable {
 		Random rand = new Random();
 		if (!this.isConscious()) {
 			map.removeActor(this);
+
 		}
 		if(distance(map.locationOf(this), map.locationOf(player)) <= 1){
 			return new AttackAction(player, "North");

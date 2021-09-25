@@ -1,6 +1,7 @@
 package game.skills;
 
 import edu.monash.fit2099.engine.*;
+import game.Player;
 
 
 public class SpinAttackAction extends WeaponAction {
@@ -20,11 +21,27 @@ public class SpinAttackAction extends WeaponAction {
 
         for (Exit exits: map.locationOf(actor).getExits()) {
             Actor target = map.getActorAt(exits.getDestination());
-            if (target != null){
+            if (target != null) {
                 target.hurt(this.weapon.damage() / 2);
                 System.out.printf("%s hits %s with Spin Attack!%n", actor.toString(), target.toString());
                 count++;
+
+                if (!target.isConscious()) {
+                    Actions dropActions = new Actions();
+                    // drop all items
+                    for (Item item : target.getInventory())
+                        if (!(target instanceof Player)) {
+                            dropActions.add(item.getDropAction(actor));
+                        }
+                    for (Action drop : dropActions)
+                        drop.execute(target, map);
+
+                    if (!(target instanceof Player)) {
+                        map.removeActor(target);
+                    }
+                }
             }
+
         }
         return String.format("Spin Attack Used on %d targets!", count);
 
