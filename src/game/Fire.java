@@ -19,6 +19,9 @@ public class Fire extends Item {
     @Override
     public void tick(Location currentLocation) {
         counter ++;
+        if (currentLocation.containsAnActor() && !(currentLocation.getActor().toString().equals("Yhorm"))){
+            currentLocation.getActor().hurt(25);
+        }
         if (counter == 4) {
             currentLocation.removeItem(this);
         }

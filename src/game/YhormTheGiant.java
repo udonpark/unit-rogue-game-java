@@ -15,7 +15,12 @@ public class YhormTheGiant extends LordOfCinder{
         super("YhormTheGiant", 'Y', 500);
     }
 
-//    @Override
+    @Override
+    public String toString() {
+        return "Yhorm";
+    }
+
+    //    @Override
 //    public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display){
 //        ;
 //    }

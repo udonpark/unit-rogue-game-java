@@ -34,4 +34,6 @@ public class YhormsGreatMachete extends WeaponItem {
             return super.chanceToHit();
         }
     }
+
+
 }
