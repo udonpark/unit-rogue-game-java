@@ -73,6 +73,7 @@ public class Application {
 		gameMap.at(51,8).addActor(new Skeleton("Skeleton"));
 		gameMap.at(41,14).addActor(new Skeleton("Skeleton"));
 		gameMap.at(32,20).addActor(new Skeleton("Skeleton"));
+		gameMap.at(28,23).addActor(new Skeleton("Skeleton"));
 		world.run();
 
 	}
