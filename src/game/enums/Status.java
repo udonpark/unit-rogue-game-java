@@ -7,5 +7,6 @@ package game.enums;
 public enum Status {
     HOSTILE_TO_ENEMY, // use this capability to be hostile towards something (e.g., to be attacked by enemy)
     ATTACK_LIMITED, // use this capability to restrict attacks from a player
-    STUNNED // stunned status
+    STUNNED, // stunned status
+    RAGE_MODE // yhorms rage mode
 }
