@@ -29,6 +29,7 @@ public class Player extends Actor implements Soul, Resettable {
 	private Location prevLocation = null;
 
 	private int lastBonfireX = 38, lastBonfireY = 11;
+
 	/**
 	 * Constructor.
 	 *
@@ -49,8 +50,8 @@ public class Player extends Actor implements Soul, Resettable {
 		// this.addCapability(Status.PASSING_THROUGH_WALLS);
 
 		//Initialize Estus Flask and action
-		this.estus = new EstusFlask(3,3);
-		this.estusAction = new EstusFlaskAction(estus,maxHitPoints);
+		this.estus = new EstusFlask(3, 3);
+		this.estusAction = new EstusFlaskAction(estus, maxHitPoints);
 
 		//Initialize the vendor actions available to player
 //		this.vendorActionHP = new VendorActionHP(this);
@@ -72,13 +73,12 @@ public class Player extends Actor implements Soul, Resettable {
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		// Retrieve the player location after each turn, useful when processing certain conditions
-		int[] playerLocation = {map.locationOf(this).x() , map.locationOf(this).y()};
+		int[] playerLocation = {map.locationOf(this).x(), map.locationOf(this).y()};
 
 		// Code for restricting player from attacking. removing this Status will solve, due to how this system works.
-		if (this.hasCapability(Status.ATTACK_LIMITED)){
+		if (this.hasCapability(Status.ATTACK_LIMITED)) {
 			this.removeCapability(Status.HOSTILE_TO_ENEMY);
-		}
-		else{
+		} else {
 			this.addCapability(Status.HOSTILE_TO_ENEMY);
 		}
 
@@ -87,13 +87,13 @@ public class Player extends Actor implements Soul, Resettable {
 		actions.add(death);
 
 		//Checks if player is dead, either by checking the hp or by checking if they have stepped on a Valley tile.
-		if(!this.isConscious() ||  map.locationOf(this).getGround().toString().equals("Valley")){
+		if (!this.isConscious() || map.locationOf(this).getGround().toString().equals("Valley")) {
 			playerDeath.setLastLocation(prevLocation);
 			return playerDeath;
 		}
 
 		//Checks if player is allowed to drink estus flask before displaying the option
-		if (hasCapability(Abilities.DRINK)){
+		if (hasCapability(Abilities.DRINK)) {
 			actions.add(estusAction);
 		}
 
@@ -123,6 +123,7 @@ public class Player extends Actor implements Soul, Resettable {
 
 	/**
 	 * Transfers all souls of the caller to the soul object specified in the parameter
+	 *
 	 * @param soulObject a target souls.
 	 */
 	@Override
@@ -134,12 +135,13 @@ public class Player extends Actor implements Soul, Resettable {
 
 	/**
 	 * Method to increment the number of souls in a soul object
+	 *
 	 * @param souls number of souls to be incremented.
 	 * @return true if successful, false otherwise
 	 */
 	@Override
 	public boolean addSouls(int souls) {
-		if (souls > 0){
+		if (souls > 0) {
 			currentSouls += souls;
 			return true;
 		}
@@ -149,14 +151,15 @@ public class Player extends Actor implements Soul, Resettable {
 
 	/**
 	 * Method to decrement the number of souls in a soul object
+	 *
 	 * @param souls number souls to be deducted
 	 * @return true if successful, false otherwise
 	 */
 	@Override
 	public boolean subtractSouls(int souls) {
-		if (souls > 0 ){
+		if (souls > 0) {
 			currentSouls -= souls;
-			if (currentSouls < 0){
+			if (currentSouls < 0) {
 				currentSouls = 0;
 			}
 			return true;
@@ -166,18 +169,20 @@ public class Player extends Actor implements Soul, Resettable {
 
 	/**
 	 * Method that returns a string showing the player's overall health, weapon and number of souls
+	 *
 	 * @return string representing various pieces of information about the player
 	 */
 	public String printStatus() {
-		return String.format("Unkindled (%d/%d), holding %s, %d souls",hitPoints,maxHitPoints,getWeapon(),currentSouls);
+		return String.format("Unkindled (%d/%d), holding %s, %d souls", hitPoints, maxHitPoints, getWeapon(), currentSouls);
 
 	}
 
 	/**
 	 * Getter for the player's soul/currency variable
+	 *
 	 * @return integer representing the number of souls
 	 */
-	public int getSouls(){
+	public int getSouls() {
 		return this.currentSouls;
 	}
 
@@ -186,11 +191,12 @@ public class Player extends Actor implements Soul, Resettable {
 	 */
 	@Override
 	public void resetInstance() {
-		this.heal(maxHitPoints*10);
+		this.heal(maxHitPoints * 10);
 	}
 
 	/**
 	 * Checks if a class exists or not when resetManager is run
+	 *
 	 * @return true if a class does exist
 	 */
 	@Override
@@ -200,6 +206,7 @@ public class Player extends Actor implements Soul, Resettable {
 
 	/**
 	 * method that returns the last coordinate bonfire rested at
+	 *
 	 * @return integer representing the x of last bonfire rested at
 	 */
 	public int getLastBonfireX() {
@@ -208,20 +215,25 @@ public class Player extends Actor implements Soul, Resettable {
 
 	/**
 	 * Method to set a new last bonfire location
+	 *
 	 * @param lastBonfireX the x value of the new last bonfire location
 	 */
 	public void setLastBonfireX(int lastBonfireX) {
 		this.lastBonfireX = lastBonfireX;
 	}
+
 	/**
 	 * method that returns the coordinate last bonfire rested at
+	 *
 	 * @return integer representing the y of last bonfire rested at
 	 */
 	public int getLastBonfireY() {
 		return lastBonfireY;
 	}
+
 	/**
 	 * Method to set a new last bonfire location
+	 *
 	 * @param lastBonfireY the y value of the new last bonfire location
 	 */
 	public void setLastBonfireY(int lastBonfireY) {

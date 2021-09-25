@@ -68,8 +68,9 @@ public class Skeleton extends Actor implements Resettable {
 
         }
         if(distance(map.locationOf(this), map.locationOf(player)) <= 1){
-            int damage = inventory.get(0).asWeapon().damage();
-            player.hurt(damage);
+//            int damage = inventory.get(0).asWeapon().damage();
+//            player.hurt(damage);
+            return new AttackAction(player,"");
         }
 
         if (distance(map.locationOf(this), map.locationOf(player)) <= 2) {
