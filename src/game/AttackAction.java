@@ -8,6 +8,8 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Weapon;
+import game.Enemies.Skeleton;
+import game.Enemies.Undead;
 
 /**
  * Special Action for attacking other Actors.
@@ -55,13 +57,21 @@ public class AttackAction extends Action {
 			Actions dropActions = new Actions();
 			// drop all items
 			for (Item item : target.getInventory())
-				dropActions.add(item.getDropAction(actor));
+				if (!(target instanceof Player)) {
+					dropActions.add(item.getDropAction(actor));
+				}
 			for (Action drop : dropActions)
 				drop.execute(target, map);
 			// remove actor
 			//TODO: In A1 scenario, you must not remove a Player from the game yet. What to do, then?
-			if(!(target instanceof Player)) {
-				map.removeActor(actor);
+			if (!(target instanceof Player)){
+				if (target instanceof Undead){
+					((Player) actor).addSouls(50);
+				}
+				if (target instanceof Skeleton){
+					((Player) actor).addSouls(250);
+				}
+				map.removeActor(target);
 			}
 			result += System.lineSeparator() + target + " is killed.";
 		}

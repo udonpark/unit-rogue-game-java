@@ -186,7 +186,7 @@ public class Player extends Actor implements Soul, Resettable {
 	 */
 	@Override
 	public void resetInstance() {
-		this.heal(maxHitPoints);
+		this.heal(maxHitPoints*10);
 	}
 
 	/**
