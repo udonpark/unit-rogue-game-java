@@ -17,7 +17,6 @@ public class ChargeAction extends WeaponAction {
     public ChargeAction(StormRuler weaponItem) {
         super(weaponItem);
         this.weapon = weaponItem;
-
     }
 
     @Override
