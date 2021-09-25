@@ -106,4 +106,8 @@ public class Skeleton extends Actor implements Resettable {
         return actions;
     }
 
+    @Override
+    public String toString() {
+        return "Skeleton";
+    }
 }

@@ -52,5 +52,10 @@ public class YhormTheGiant extends LordOfCinder {
     private int distance(Location a, Location b) {
         return Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y());
     }
+
+    @Override
+    public String toString() {
+        return "Yhorm";
+    }
 }
 

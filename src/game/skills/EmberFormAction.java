@@ -1,7 +1,7 @@
 package game.skills;
 
 import edu.monash.fit2099.engine.*;
-import game.ground.Fire;
+import game.Fire;
 
 
 public class EmberFormAction extends WeaponAction{
@@ -16,27 +16,25 @@ public class EmberFormAction extends WeaponAction{
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        Location floor;
-        int x = map.locationOf(actor).x();
-        int y = map.locationOf(actor).y();
-        floor = new Location(map, x-1, y);
-        if (floor.getGround().getDisplayChar() == 'F'){
-            floor.setGround(new Fire());
-        }
+        for (Exit exits: map.locationOf(actor).getExits()) {
+            Ground floor = exits.getDestination().getGround();
+            if (floor.getDisplayChar() == '.'){
+                exits.getDestination().addItem(new Fire());
+            }
 
-        floor = new Location(map, x, y+1);
-        if (floor.getGround().getDisplayChar() == 'F'){
-            floor.setGround(new Fire());
-        }
-
-        floor = new Location(map, x+1, y);
-        if (floor.getGround().getDisplayChar() == 'F'){
-            floor.setGround(new Fire());
-        }
-
-        floor = new Location(map, x, y-1);
-        if (floor.getGround().getDisplayChar() == 'F'){
-            floor.setGround(new Fire());
+//        floor = new Location(map, x, y+1);
+//        if (floor.getGround().getDisplayChar() == '.'){
+//            floor.addItem(new Fire());
+//        }
+//
+//        floor = new Location(map, x+1, y);
+//        if (floor.getGround().getDisplayChar() == '.'){
+//            floor.addItem(new Fire());
+//        }
+//
+//        floor = new Location(map, x, y-1);
+//        if (floor.getGround().getDisplayChar() == '.'){
+//            floor.addItem(new Fire());
         }
         return "Ember Form activated! YhormTheGiant uses Burn Ground!";
     }

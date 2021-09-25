@@ -46,7 +46,7 @@ public class Player extends Actor implements Soul, Resettable {
 		this.addCapability(Abilities.REST);
 		this.addCapability(Abilities.DRINK);
 		this.addCapability(Abilities.BUY);
-
+		// this.addCapability(Status.PASSING_THROUGH_WALLS);
 
 		//Initialize Estus Flask and action
 		this.estus = new EstusFlask(3,3);
@@ -220,5 +220,8 @@ public class Player extends Actor implements Soul, Resettable {
 		this.lastBonfireY = lastBonfireY;
 	}
 
-
+	@Override
+	public String toString() {
+		return "Unkindled";
+	}
 }
