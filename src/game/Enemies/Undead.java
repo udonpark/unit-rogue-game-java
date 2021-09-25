@@ -7,6 +7,7 @@ import game.*;
 import game.enums.Status;
 import game.interfaces.Behaviour;
 import game.interfaces.Resettable;
+import weapon.GiantAxe;
 
 import java.util.ArrayList;
 import java.util.Random;

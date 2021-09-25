@@ -1,9 +1,9 @@
 package weapon;
 
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.WeaponAction;
-import edu.monash.fit2099.engine.WeaponItem;
+import edu.monash.fit2099.engine.*;
 import game.skills.SpinAttackAction;
+
+import java.util.List;
 
 public class GiantAxe extends WeaponItem {
     private Actor holder;
@@ -12,10 +12,15 @@ public class GiantAxe extends WeaponItem {
         this.holder = holder;
     }
 
+//    @Override
+//    public WeaponAction getActiveSkill(Actor target, String direction) {  // It does not have a target, but a ranged attack
+//        return new SpinAttackAction(this);
+//    }
+
     @Override
-    public WeaponAction getActiveSkill(Actor target, String direction) {  // It does not have a target, but a ranged attack
-        return new SpinAttackAction(this);
+    public List<Action> getAllowableActions() {
+        Actions actions = new Actions();
+        actions.add(new SpinAttackAction(this));
+        return actions.getUnmodifiableActionList();
     }
-
-
 }
