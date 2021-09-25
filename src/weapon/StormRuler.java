@@ -13,7 +13,7 @@ public class StormRuler extends WeaponItem {
     private Player holder;
 
     public StormRuler(Player player){
-        super("Storm Ruler", 'S', 70, "hits", 70);
+        super("Storm Ruler", '7', 70, "hits", 70);
         this.charge = 0;
         this.holder = player;
     }

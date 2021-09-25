@@ -11,4 +11,5 @@ public class Fire extends Ground {
     public Fire() {
         super('F');
     }
+
 }
