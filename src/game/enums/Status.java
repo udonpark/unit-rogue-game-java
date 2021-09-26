@@ -9,5 +9,6 @@ public enum Status {
     ATTACK_LIMITED, // use this capability to restrict attacks from a player
     STUNNED, // stunned status
     RAGE_MODE, // yhorms rage mode
-    WEAK_TO_STORM_RULER // only yhorm takes certain damage from storm ruler
+    WEAK_TO_STORM_RULER, // only yhorm takes certain damage from storm ruler
+    WAS_REVIVED
 }
