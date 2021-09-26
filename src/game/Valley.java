@@ -13,7 +13,8 @@ public class Valley extends Ground {
 	}
 
 	/**
-	 * Allows player ot enter valley tile
+	 * Allows player to enter valley tile
+	 * Only player can step into Valley
 	 * @param actor the Actor to check
 	 * @return false or actor cannot enter.
 	 */
