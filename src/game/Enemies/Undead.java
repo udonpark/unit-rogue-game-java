@@ -20,7 +20,6 @@ public class Undead extends Actor implements Resettable {
 	/**
 	 * Constructor.
 	 * All Undeads are represented by an 'u' and have 30 hit points.
-	 *
 	 * @param name the name of this Undead
 	 */
 	public Undead(String name) {
@@ -30,25 +29,44 @@ public class Undead extends Actor implements Resettable {
 		registerInstance();
 	}
 
-
+	/**
+	 *
+	 */
 	@Override
 	public void resetInstance() {
 		;
 	}
 
+	/**
+	 * Overiddes isExist
+	 * @return the existence of the instance in the game.
+	 */
 	@Override
 	public boolean isExist() {
 		return false;
 	}
 
+	/**
+	 *
+	 * @return new Intrinsic Weapon with 20 damage
+	 */
 	@Override
 	protected IntrinsicWeapon getIntrinsicWeapon() {
 		return new IntrinsicWeapon(20, "punches");
 	}
 
+	/**
+	 * Called every turn and executes an action, if player is in adjacent blocks it attacks. if player is 2 blacks away
+	 * it follows the player, else it just wanders around
+	 * @param actions    collection of possible Actions for this Actor
+	 * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+	 * @param map        the map containing the Actor
+	 * @param display    the I/O object to which messages may be written
+	 * @return
+	 */
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 //         loop through all behaviours
-		Random rand = new Random();
+     	Random rand = new Random();
 //		if (!this.isConscious()) {
 //			map.removeActor(this);
 //			player.addSouls(50);
@@ -75,10 +93,23 @@ public class Undead extends Actor implements Resettable {
 		return new DoNothingAction();
 	}
 
+	/**
+	 *
+	 * @param a location of a
+	 * @param b location of b
+	 * @return
+	 */
 	private int distance(Location a, Location b) {
 		return Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y());
 	}
 
+	/**
+	 *
+	 * @param otherActor the Actor that might be performing attack
+	 * @param direction  String representing the direction of the other Actor
+	 * @param map        current GameMap
+	 * @return
+	 */
 	@Override
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
 		Actions actions = new Actions();
@@ -89,6 +120,10 @@ public class Undead extends Actor implements Resettable {
 		return actions;
 	}
 
+	/**
+	 *
+	 * @return
+	 */
 	@Override
 	public String toString() {
 		return String.format("Undead (%d/%d)",this.hitPoints,this.maxHitPoints);
