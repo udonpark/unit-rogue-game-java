@@ -33,7 +33,7 @@ public class YhormTheGiant extends LordOfCinder {
             map.removeActor(this);
             player.addSouls(5000);
         }
-        System.out.printf("Yhorm's HP, (%d/%d%n)\n", this.hitPoints, this.maxHitPoints);
+        System.out.printf("Yhorm's HP: (%d/%d)\n", this.hitPoints, this.maxHitPoints);
         if (this.hasCapability(Status.STUNNED)){
             this.removeCapability(Status.STUNNED);
             return new DoNothingAction();

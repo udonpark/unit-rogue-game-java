@@ -1,7 +1,11 @@
 package weapon;
 
 import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.PickUpItemAction;
 import edu.monash.fit2099.engine.WeaponItem;
+import game.Player;
+import game.SwapWeaponAction;
+
 import java.util.Random;
 
 public class BroadSword extends WeaponItem {
@@ -19,5 +23,11 @@ public class BroadSword extends WeaponItem {
         else{
             return super.damage();
         }
+    }
+
+    @Override
+    public PickUpItemAction getPickUpAction(Actor actor) {
+//        holder = (Player) actor;
+        return new SwapWeaponAction(this);
     }
 }
