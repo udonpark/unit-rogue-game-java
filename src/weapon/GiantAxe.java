@@ -1,6 +1,7 @@
 package weapon;
 
 import edu.monash.fit2099.engine.*;
+import game.Player;
 import game.SwapWeaponAction;
 import game.skills.SpinAttackAction;
 
@@ -27,7 +28,10 @@ public class GiantAxe extends WeaponItem {
 
     @Override
     public PickUpItemAction getPickUpAction(Actor actor) {
-        holder = actor;
+        if (!(actor.toString().equals("Unkindled"))){
+            return null;
+        }
+        holder = (Player) actor;
         return new SwapWeaponAction(this);
     }
 }

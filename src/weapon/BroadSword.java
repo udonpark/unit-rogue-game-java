@@ -27,6 +27,9 @@ public class BroadSword extends WeaponItem {
 
     @Override
     public PickUpItemAction getPickUpAction(Actor actor) {
+        if (!(actor.toString().equals("Unkindled"))){
+            return null;
+        }
         holder = (Player) actor;
         return new SwapWeaponAction(this);
     }
