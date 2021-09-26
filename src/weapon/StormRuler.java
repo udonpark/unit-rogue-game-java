@@ -42,11 +42,14 @@ public class StormRuler extends WeaponItem {
 
     @Override
     public int damage() {
+        int dmg = super.damage();
+//        for (Exit exits: this.holder)
+//        if (this.holder.
         if (new Random().nextInt(4) == 0) {
-            return super.damage() * 2;
+            return dmg * 2;
         }
         else{
-            return super.damage();
+            return dmg;
         }
     }
 

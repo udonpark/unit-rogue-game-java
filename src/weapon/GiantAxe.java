@@ -27,7 +27,7 @@ public class GiantAxe extends WeaponItem {
 
     @Override
     public PickUpItemAction getPickUpAction(Actor actor) {
-//        holder = (Player) actor;
+        holder = actor;
         return new SwapWeaponAction(this);
     }
 }

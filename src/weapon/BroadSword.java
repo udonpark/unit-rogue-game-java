@@ -27,7 +27,7 @@ public class BroadSword extends WeaponItem {
 
     @Override
     public PickUpItemAction getPickUpAction(Actor actor) {
-//        holder = (Player) actor;
+        holder = (Player) actor;
         return new SwapWeaponAction(this);
     }
 }
