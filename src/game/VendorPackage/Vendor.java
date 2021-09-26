@@ -7,15 +7,27 @@ import edu.monash.fit2099.engine.Location;
 import game.Player;
 
 public class Vendor extends Ground {
+    /**
+     * Constructor for Vendor on ground, which is represented by F
+     */
     public Vendor() {
         super('F');
     }
 
+    /**
+     * Gives permission to actor to enter in this tile
+     * @param actor the Actor to check
+     * @return boolean whether or not actor can enter Vendor
+     */
     @Override
     public boolean canActorEnter(Actor actor) {
         return true;
     }
 
+    /**
+     * returns a string representing the Vendor class
+     * @return string called Vendor
+     */
     @Override
     public String toString() {
         return "Vendor";

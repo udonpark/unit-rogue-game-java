@@ -15,8 +15,12 @@ public class StormRuler extends WeaponItem {
     private int charge;
     private Player holder;
 //    private int varying_dmg;
-    private GameMap map;
+    private final GameMap map;
 
+    /**
+     * Constructor for weapon StormRuler. It also takes in Map, in order to apply dullness passive
+     * @param map takes in map where StormRuler is placed.
+     */
     public StormRuler(GameMap map){
         super("Storm Ruler", '7', 70, "hits", 70);
         this.charge = 0;
@@ -36,6 +40,10 @@ public class StormRuler extends WeaponItem {
 //        return null;
 //    }
 
+    /**
+     * Overrides method that gives list of possible Actions available by this StormRuler
+     * @return WindSlashAction if charge is 3, and ChargeAction if charge is less than 3
+     */
     @Override
     public List<Action> getAllowableActions(){
         Actions actions = new Actions();
@@ -51,6 +59,11 @@ public class StormRuler extends WeaponItem {
         return actions.getUnmodifiableActionList();
     }
 
+    /**
+     * A getter for damage to deal
+     * @return damage to deal to the target. If an actor weak to Storm Ruler, i.e, Yhorm is in adjacent squares,
+     * it returns 70 and 35 otherwise
+     */
     @Override
     public int damage() {
         int dmg = this.damage / 2;
@@ -95,18 +108,33 @@ public class StormRuler extends WeaponItem {
 //        return null;
 //    }
 
+    /**
+     * Accessor for the charge
+     * @return the charge, 0-3, of the StormRuler
+     */
     public int getCharge(){
         return this.charge;
     }
 
+    /**
+     * It increments the charge by one
+     */
     public void increaseCharge(){
         this.charge++;
     }
 
+    /**
+     * Resets the charge to 0
+     */
     public void resetCharge(){
         this.charge = 0;
     }
 
+    /**
+     * Overrides method to allow Actor(Player) to pick-up.
+     * @param actor an actor that will interact with this item.
+     * @return SwapWeaponAction if a Player steps on the item.
+     */
     @Override
     public PickUpItemAction getPickUpAction(Actor actor) {
         if (!(actor.toString().equals("Unkindled"))){
@@ -118,7 +146,10 @@ public class StormRuler extends WeaponItem {
         return new SwapWeaponAction(this);
     }
 
-
+    /**
+     * toString() to distinguish which class this is
+     * @return a string called "StormRuler"
+     */
     @Override
     public String toString() {
         return "StormRuler";
