@@ -24,8 +24,6 @@ public class Player extends Actor implements Soul, Resettable {
 	private int currentSouls;
 
 	private PlayerDeathAction playerDeath;
-	private selfharmAction selfharm;
-	private selfDeath death;
 	private Location prevLocation = null;
 
 	private int lastBonfireX = 38, lastBonfireY = 11;
@@ -65,8 +63,7 @@ public class Player extends Actor implements Soul, Resettable {
 		this.inventory.add(new BroadSword(this));
 
 		//Classes for testing, TODO: comment out later
-		this.selfharm = new selfharmAction();
-		this.death = new selfDeath();
+
 
 	}
 
@@ -83,8 +80,7 @@ public class Player extends Actor implements Soul, Resettable {
 		}
 
 		//Classes for testing, TODO: comment out later
-		actions.add(selfharm);
-		actions.add(death);
+
 
 		//Checks if player is dead, either by checking the hp or by checking if they have stepped on a Valley tile.
 		if (!this.isConscious() || map.locationOf(this).getGround().toString().equals("Valley")) {
