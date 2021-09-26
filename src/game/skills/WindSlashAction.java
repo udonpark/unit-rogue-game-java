@@ -1,8 +1,13 @@
 package game.skills;
 
 import edu.monash.fit2099.engine.*;
+import game.Enemies.Skeleton;
+import game.Enemies.Undead;
+import game.Player;
 import game.enums.Status;
 import weapon.StormRuler;
+
+import java.util.Random;
 
 public class WindSlashAction extends WeaponAction {
     private final StormRuler weapon;
@@ -36,6 +41,36 @@ public class WindSlashAction extends WeaponAction {
                     target.addCapability(Status.STUNNED);
                     this.weapon.resetCharge();
                     return actor.toString() + " attacks and stuns " + target.toString();
+                }
+            }
+            if (!target.isConscious()) {
+                Actions dropActions = new Actions();
+                // drop all items
+                for (Item item : target.getInventory())
+                    if (!(target instanceof Player)) {
+                        dropActions.add(item.getDropAction(actor));
+                    }
+                for (Action drop : dropActions)
+                    drop.execute(target, map);
+
+                if (!(target instanceof Player)){
+                    if (target instanceof Undead){
+                        ((Player) actor).addSouls(50);
+                    }
+                    if (target instanceof Skeleton){
+                        Random rand = new Random();
+                        if (rand.nextInt(2) == 1 && !target.hasCapability(Status.WAS_REVIVED)) {
+                            target.heal(100);
+                            target.addCapability(Status.WAS_REVIVED);
+                            return System.lineSeparator() + String.format("skeleton was revived");
+
+                        }
+                        else{
+                            map.removeActor(target);
+                            ((Player) actor).addSouls(250);
+                        }
+                    }
+                    map.removeActor(target);
                 }
             }
         }
