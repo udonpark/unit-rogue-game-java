@@ -87,7 +87,7 @@ public class StormRuler extends WeaponItem {
     @Override
     public PickUpItemAction getPickUpAction(Actor actor) {
         holder = (Player) actor;
-        //swap actioasntioas
+        //swap action
 //        return super.getPickUpAction(actor);
         return new SwapWeaponAction(this);
     }
