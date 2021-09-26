@@ -5,15 +5,14 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import game.Player;
 
-public class VendorActionHP extends Action {
-    private final Player player;
+public class VendorActionHP extends VendorAction {
 
     /**
      * Constructor for VendorAction that allows player to purchase extra HP from vendor.
      * @param player Player, who is performing the action.
      */
     public VendorActionHP(Player player){
-        this.player = player;
+        super(player);
     }
 
     /**

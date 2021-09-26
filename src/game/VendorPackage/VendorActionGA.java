@@ -7,10 +7,9 @@ import game.Player;
 import game.SwapWeaponAction;
 import weapon.GiantAxe;
 
-public class VendorActionGA extends Action {
-    private final Player player;
+public class VendorActionGA extends VendorAction {
     public VendorActionGA(Player player){
-        this.player = player;
+        super(player);
     }
 
     /**
