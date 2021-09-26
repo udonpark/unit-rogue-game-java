@@ -10,6 +10,7 @@ import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Weapon;
 import game.Enemies.Skeleton;
 import game.Enemies.Undead;
+import game.enums.Status;
 
 /**
  * Special Action for attacking other Actors.
@@ -69,11 +70,22 @@ public class AttackAction extends Action {
 					((Player) actor).addSouls(50);
 				}
 				if (target instanceof Skeleton){
+
 					((Player) actor).addSouls(250);
+					Random rand = new Random();
+					if (rand.nextInt(2) == 1 && !target.hasCapability(Status.WAS_REVIVED)) {
+						target.heal(100);
+						target.addCapability(Status.WAS_REVIVED);
+						result += System.lineSeparator() + "skeleton was revived";
+						return result;
+					}
+					else{
+						map.removeActor(target);
+					}
 				}
 				map.removeActor(target);
 			}
-			result += System.lineSeparator() + target + " is killed.";
+			result += System.lineSeparator() + target + " is killed." ;
 		}
 
 		return result;

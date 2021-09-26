@@ -13,17 +13,18 @@ public class Fire extends Item {
 
     public Fire() {
         super("Fire", 'F', false);
-        counter = 0;
+        this.counter = 0;
     }
 
     @Override
     public void tick(Location currentLocation) {
-        counter ++;
-        if (currentLocation.containsAnActor() && !(currentLocation.getActor().toString().equals("Yhorm"))){
-            currentLocation.getActor().hurt(25);
-        }
-        if (counter == 4) {
+        if (this.counter == 4) {
             currentLocation.removeItem(this);
         }
+        if (currentLocation.containsAnActor() && !(currentLocation.getActor().toString().equals("Yhorm"))){
+            currentLocation.getActor().hurt(25);
+        this.counter ++;
+        }
+
     }
 }
