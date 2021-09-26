@@ -57,7 +57,7 @@ public class Skeleton extends Actor implements Resettable {
         if (!this.isConscious()) {
             int counter = 0;
             Random rand = new Random();
-            if (rand.nextInt(1) == 0 && counter < 1){
+            if (rand.nextInt(2) == 0 && counter < 1){
                 this.heal(100);
                 counter ++;
             }
@@ -68,8 +68,9 @@ public class Skeleton extends Actor implements Resettable {
 
         }
         if(distance(map.locationOf(this), map.locationOf(player)) <= 1){
-            int damage = inventory.get(0).asWeapon().damage();
-            player.hurt(damage);
+//            int damage = inventory.get(0).asWeapon().damage();
+//            player.hurt(damage);
+            return new AttackAction(player,"");
         }
 
         if (distance(map.locationOf(this), map.locationOf(player)) <= 2) {

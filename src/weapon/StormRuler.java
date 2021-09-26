@@ -1,6 +1,7 @@
 package weapon;
 
 import edu.monash.fit2099.engine.*;
+import game.Application;
 import game.Player;
 import game.skills.ChargeAction;
 import game.skills.WindSlashAction;
@@ -12,10 +13,10 @@ public class StormRuler extends WeaponItem {
     private int charge;
     private Player holder;
 
-    public StormRuler(Player player){
+    public StormRuler(){
         super("Storm Ruler", '7', 70, "hits", 70);
         this.charge = 0;
-        this.holder = player;
+        this.holder = null;
     }
 
     /**
@@ -26,11 +27,14 @@ public class StormRuler extends WeaponItem {
     @Override
     public List<Action> getAllowableActions(){
         Actions actions = new Actions();
-        if (this.charge == 3){
-            actions.add(new WindSlashAction(this));
-        }
-        if (this.charge < 3){
-            actions.add(new ChargeAction(this));
+        if (holder != null) {
+            if (this.charge == 3) {
+                actions.add(new WindSlashAction(this));
+            }
+            if (this.charge < 3) {
+                actions.add(new ChargeAction(this));
+            }
+
         }
         return actions.getUnmodifiableActionList();
     }
@@ -77,5 +81,17 @@ public class StormRuler extends WeaponItem {
 
     public void resetCharge(){
         this.charge = 0;
+    }
+
+    @Override
+    public PickUpItemAction getPickUpAction(Actor actor) {
+        holder = (Player) actor;
+        //swap actioasntioas
+        return super.getPickUpAction(actor);
+    }
+
+    @Override
+    public String toString() {
+        return "StormRuler";
     }
 }
