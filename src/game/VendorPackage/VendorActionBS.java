@@ -9,15 +9,14 @@ import game.SwapWeaponAction;
 import weapon.BroadSword;
 
 
-public class VendorActionBS extends Action {
-    private final Player player;
+public class VendorActionBS extends VendorAction {
 
     /**
      * Constructor for VendorAction to buy BroadSword, which inherits from Action
      * @param player takes in a Player argument who makes the arction
      */
     public VendorActionBS(Player player){
-        this.player = player;
+        super(player);
     }
 
     /**
