@@ -23,4 +23,6 @@ public class GiantAxe extends WeaponItem {
         actions.add(new SpinAttackAction(this));
         return actions.getUnmodifiableActionList();
     }
+
+
 }

@@ -3,6 +3,7 @@ package weapon;
 import edu.monash.fit2099.engine.*;
 import game.Application;
 import game.Player;
+import game.SwapWeaponAction;
 import game.skills.ChargeAction;
 import game.skills.WindSlashAction;
 
@@ -87,8 +88,10 @@ public class StormRuler extends WeaponItem {
     public PickUpItemAction getPickUpAction(Actor actor) {
         holder = (Player) actor;
         //swap actioasntioas
-        return super.getPickUpAction(actor);
+//        return super.getPickUpAction(actor);
+        return new SwapWeaponAction(this);
     }
+
 
     @Override
     public String toString() {
