@@ -69,7 +69,18 @@ public class AttackAction extends Action {
 					((Player) actor).addSouls(50);
 				}
 				if (target instanceof Skeleton){
+					int counter = 0;
 					((Player) actor).addSouls(250);
+					Random rand = new Random();
+					if (rand.nextInt(2) == 1 && counter < 1) {
+						target.heal(100);
+						counter = counter + 1;
+						result += System.lineSeparator() + "skeleton was revived";
+						return result;
+					}
+					else{
+						map.removeActor(target);
+					}
 				}
 				map.removeActor(target);
 			}
