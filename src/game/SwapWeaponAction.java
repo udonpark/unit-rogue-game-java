@@ -13,13 +13,23 @@ import java.util.List;
 public class SwapWeaponAction extends PickUpItemAction {
 
     /**
-     * Constructor
+     * Constructor for the Action which swaps current holding weapon of an actor to any of the
+     * other wanted weapon
+     *
      * @param weapon the new item that will replace the weapon in the Actor's inventory.
      */
     public SwapWeaponAction(Item weapon){
         super(weapon);
     }
 
+    /**
+     * Execute function which deletes currentWeapon holding in the inventory, and instead adds
+     * the new weapon which is stored as this.item.
+     *
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return String message to print to menu if swapping has been successful
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         Weapon currentWeapon = actor.getWeapon();

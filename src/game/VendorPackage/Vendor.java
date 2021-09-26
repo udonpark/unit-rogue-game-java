@@ -49,10 +49,11 @@ public class Vendor extends Ground {
         }
         if (((Player) actor).getSouls() >= 500){
             actions.add(new VendorActionBS((Player) actor));
+        }
+        if (((Player) actor).getSouls() >= 1000) {
             actions.add(new VendorActionGA((Player) actor));
         }
         return actions;
-
     }
 }
 
