@@ -75,11 +75,11 @@ public class YhormTheGiant extends LordOfCinder implements Resettable {
     }
 
     /**
-     *
+     * Returns a collection of the Actions that the otherActor can do to the current Actor.
      * @param otherActor the Actor that might be performing attack
      * @param direction  String representing the direction of the other Actor
      * @param map        current GameMap
-     * @return
+     * @return a collection of actions
      */
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {

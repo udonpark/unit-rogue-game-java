@@ -94,21 +94,21 @@ public class Undead extends Actor implements Resettable {
 	}
 
 	/**
-	 *
-	 * @param a location of a
-	 * @param b location of b
-	 * @return
+	 * This method finds the distance between a and b
+	 * @param a location of a which is an Actor
+	 * @param b location of b which is an Actor
+	 * @return the distance between a and b
 	 */
 	private int distance(Location a, Location b) {
 		return Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y());
 	}
 
 	/**
-	 *
+	 * Returns a collection of the Actions that the otherActor can do to the current Actor.
 	 * @param otherActor the Actor that might be performing attack
 	 * @param direction  String representing the direction of the other Actor
 	 * @param map        current GameMap
-	 * @return
+	 * @return a collection of actions
 	 */
 	@Override
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
@@ -122,7 +122,7 @@ public class Undead extends Actor implements Resettable {
 
 	/**
 	 *
-	 * @return
+	 * @return skeletons hit points and max hit points
 	 */
 	@Override
 	public String toString() {
