@@ -62,7 +62,6 @@ public class Player extends Actor implements Soul, Resettable {
 		//Initializes the inventory of the player, specifically to add its weapon
 		this.inventory.add(new BroadSword(this));
 
-		//Classes for testing, TODO: comment out later
 
 
 	}
@@ -78,8 +77,6 @@ public class Player extends Actor implements Soul, Resettable {
 		} else {
 			this.addCapability(Status.HOSTILE_TO_ENEMY);
 		}
-
-		//Classes for testing, TODO: comment out later
 
 
 		//Checks if player is dead, either by checking the hp or by checking if they have stepped on a Valley tile.
