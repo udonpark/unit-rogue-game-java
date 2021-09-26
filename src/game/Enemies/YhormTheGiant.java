@@ -1,18 +1,19 @@
 package game.Enemies;
 
 import edu.monash.fit2099.engine.*;
-import game.Application;
-import game.AttackAction;
-import game.LordOfCinder;
-import game.Player;
+import game.*;
 import game.enums.Status;
+import game.interfaces.Behaviour;
 import game.skills.EmberFormAction;
 import weapon.GiantAxe;
 import weapon.YhormsGreatMachete;
 
+import java.util.ArrayList;
+
 public class YhormTheGiant extends LordOfCinder {
     private Player player;
     private WeaponItem Yhormsgreatmachete = new YhormsGreatMachete(this);
+    private ArrayList<Behaviour> behaviours = new ArrayList<>();
 
     /**
      * Constructor.
@@ -22,6 +23,8 @@ public class YhormTheGiant extends LordOfCinder {
         super("YhormTheGiant", 'Y', 500);
         this.player = Application.getPlayer();
         super.addItemToInventory(Yhormsgreatmachete);
+        behaviours.add(new FollowBehaviour(player));
+
     }
 
     @Override
@@ -44,6 +47,11 @@ public class YhormTheGiant extends LordOfCinder {
 //            int damage = inventory.get(0).asWeapon().damage();
 //            player.hurt(damage);
             return new AttackAction(player,"");
+        }
+        for (Behaviour Behaviour : behaviours) {
+            Action action = Behaviour.getAction(this, map);
+            if (action != null)
+                return action;
         }
         return new DoNothingAction();
 
