@@ -19,7 +19,7 @@ public class YhormTheGiant extends LordOfCinder {
      *
      */
     public YhormTheGiant() {
-        super("YhormTheGiant", 'Y', 250);
+        super("YhormTheGiant", 'Y', 500);
         this.player = Application.getPlayer();
         super.addItemToInventory(Yhormsgreatmachete);
     }
@@ -30,12 +30,14 @@ public class YhormTheGiant extends LordOfCinder {
             map.removeActor(this);
             player.addSouls(5000);
         }
+        System.out.printf("Yhorm's HP, (%d/%d%n)\n", this.hitPoints, this.maxHitPoints);
         if (this.hasCapability(Status.STUNNED)){
             this.removeCapability(Status.STUNNED);
             return new DoNothingAction();
         }
-        if(this.hitPoints < 250){
+        if(this.hitPoints < this.maxHitPoints/2){
             this.addCapability(Status.RAGE_MODE);
+            System.out.println("Yhorm in RAGE MODE!");
             return new EmberFormAction(Yhormsgreatmachete);
         }
         if(distance(map.locationOf(this), map.locationOf(player)) <= 1){
@@ -55,6 +57,8 @@ public class YhormTheGiant extends LordOfCinder {
         }
         return actions;
     }
+
+
 
     //    @Override
 //    public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
