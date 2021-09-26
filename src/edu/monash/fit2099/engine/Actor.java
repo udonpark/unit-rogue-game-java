@@ -124,12 +124,7 @@ public abstract class Actor implements Capable, Printable, DesignOSoulsAddOn, Ma
 	 * @param points number of hitpoints to deduct.
 	 */
 	public void hurt(int points) {
-		if((hitPoints - points) < 0){
-			hitPoints = 0;
-		}
-		else {
-			hitPoints -= points;
-		}
+		hitPoints -= points;
 	}
 
 

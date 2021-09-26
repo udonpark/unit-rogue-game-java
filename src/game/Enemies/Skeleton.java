@@ -54,19 +54,19 @@ public class Skeleton extends Actor implements Resettable {
      */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-        if (!this.isConscious()) {
-            int counter = 0;
-            Random rand = new Random();
-            if (rand.nextInt(2) == 0 && counter < 1){
-                this.heal(100);
-                counter ++;
-            }
-            else {
-                map.removeActor(this);
-                player.addSouls(250);
-            }
+//        if (!this.isConscious()) {
+//            int counter = 0;
+//            Random rand = new Random();
+//            if (rand.nextInt(2) == 0 && counter < 1){
+//                this.heal(100);
+//                counter ++;
+//            }
+//            else {
+//                map.removeActor(this);
+//                player.addSouls(250);
+//            }
 
-        }
+
         if(distance(map.locationOf(this), map.locationOf(player)) <= 1){
 //            int damage = inventory.get(0).asWeapon().damage();
 //            player.hurt(damage);
@@ -99,7 +99,7 @@ public class Skeleton extends Actor implements Resettable {
         if (this.isConscious()){
             map.moveActor(this, map.at(initialx,initialy));
         }else{
-            this.heal(99999);
+            this.heal(100);
             map.at(initialx,initialy).addActor(this);
         }
 
@@ -135,4 +135,14 @@ public class Skeleton extends Actor implements Resettable {
         return "Skeleton";
     }
 
+
+    @Override
+    public void hurt(int points) {
+        if((hitPoints - points) < 0){
+            hitPoints = 0;
+        }
+        else {
+            hitPoints -= points;
+        }
+    }
 }
