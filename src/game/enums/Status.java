@@ -8,6 +8,6 @@ public enum Status {
     HOSTILE_TO_ENEMY, // use this capability to be hostile towards something (e.g., to be attacked by enemy)
     ATTACK_LIMITED, // use this capability to restrict attacks from a player
     STUNNED, // stunned status
-    RAGE_MODE,  // yhorms rage mode
-    WAS_REVIVED
+    RAGE_MODE, // yhorms rage mode
+    WEAK_TO_STORM_RULER // only yhorm takes certain damage from storm ruler
 }

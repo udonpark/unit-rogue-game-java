@@ -24,6 +24,7 @@ public class YhormTheGiant extends LordOfCinder {
         this.player = Application.getPlayer();
         super.addItemToInventory(Yhormsgreatmachete);
         behaviours.add(new FollowBehaviour(player));
+        this.addCapability(Status.WEAK_TO_STORM_RULER);
 
     }
 
