@@ -111,7 +111,7 @@ public class Player extends Actor implements Soul, Resettable {
 	 */
 	@Override
 	public void resetInstanceSouls() {
-		currentSouls = 1500;
+		currentSouls = 0;
 	}
 
 	/**
