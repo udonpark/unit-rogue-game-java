@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.*;
 import game.Application;
 import game.Player;
 import game.SwapWeaponAction;
+import game.enums.Status;
 import game.skills.ChargeAction;
 import game.skills.WindSlashAction;
 
@@ -13,17 +14,27 @@ import java.util.Random;
 public class StormRuler extends WeaponItem {
     private int charge;
     private Player holder;
+//    private int varying_dmg;
+    private GameMap map;
 
-    public StormRuler(){
+    public StormRuler(GameMap map){
         super("Storm Ruler", '7', 70, "hits", 70);
         this.charge = 0;
         this.holder = null;
+//        this.varying_dmg = this.damage;
+        this.map = map;
     }
 
-    /**
-     *
-     * @return
-     */
+//    @Override
+//    public WeaponAction getActiveSkill(Actor target, String direction) {
+//        if (target.hasCapability(Status.WEAK_TO_STORM_RULER)){
+//            this.varying_dmg = this.damage;
+//        }
+//        else{
+//            this.varying_dmg = this.damage / 2;
+//        }
+//        return null;
+//    }
 
     @Override
     public List<Action> getAllowableActions(){
@@ -42,9 +53,18 @@ public class StormRuler extends WeaponItem {
 
     @Override
     public int damage() {
-        int dmg = super.damage();
-//        for (Exit exits: this.holder)
-//        if (this.holder.
+        int dmg = this.damage / 2;
+        boolean yhorm_found = false;
+        if (this.holder != null){
+            for (Exit exits: this.map.locationOf(this.holder).getExits()){
+                if (exits.getDestination().getActor() != null) {
+                    if (exits.getDestination().getActor().hasCapability(Status.WEAK_TO_STORM_RULER) && !yhorm_found) {
+                        dmg = dmg * 2;
+                        yhorm_found = true;
+                    }
+                }
+            }
+        }
         if (new Random().nextInt(4) == 0) {
             return dmg * 2;
         }
@@ -89,6 +109,9 @@ public class StormRuler extends WeaponItem {
 
     @Override
     public PickUpItemAction getPickUpAction(Actor actor) {
+        if (!(actor.toString().equals("Unkindled"))){
+            return null;
+        }
         holder = (Player) actor;
         //swap action
 //        return super.getPickUpAction(actor);
