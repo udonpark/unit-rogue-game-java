@@ -7,9 +7,21 @@ import game.Player;
 
 public class VendorActionHP extends Action {
     private final Player player;
+
+    /**
+     * Constructor for VendorAction that allows player to purchase extra HP from vendor.
+     * @param player Player, who is performing the action.
+     */
     public VendorActionHP(Player player){
         this.player = player;
     }
+
+    /**
+     * Action class for player to purchase increase Maximum HP from Vendor
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return String message to print to menu when it is purchased
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         this.player.increaseMaxHp(25);
@@ -17,11 +29,20 @@ public class VendorActionHP extends Action {
         return String.format("Paid 200 Souls for 25HP. Current HP is %d", this.player.getSouls());
     }
 
+    /**
+     * Shows menuDescription of this class
+     * @param actor The actor performing the action.
+     * @return String, description of this action to show in the menu.
+     */
     @Override
     public String menuDescription(Actor actor) {
         return "Increase Maximum HP for 200 Souls from the Vendor";
     }
 
+    /**
+     * Player is responsible for typing this string to execute this action
+     * @return String, o representing hotkey
+     */
     @Override
     public String hotkey() {
         return "o";
