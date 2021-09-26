@@ -30,6 +30,14 @@ public class YhormTheGiant extends LordOfCinder implements Resettable {
 
     }
 
+    /**
+     *
+     * @param actions    collection of possible Actions for this Actor
+     * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+     * @param map        the map containing the Actor
+     * @param display    the I/O object to which messages may be written
+     * @return
+     */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         if (!this.isConscious()) {
@@ -66,6 +74,13 @@ public class YhormTheGiant extends LordOfCinder implements Resettable {
 
     }
 
+    /**
+     *
+     * @param otherActor the Actor that might be performing attack
+     * @param direction  String representing the direction of the other Actor
+     * @param map        current GameMap
+     * @return
+     */
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
         Actions actions = new Actions();
@@ -85,16 +100,30 @@ public class YhormTheGiant extends LordOfCinder implements Resettable {
 //        // it can be attacked only by the HOSTILE opponent, and this action will not attack the HOSTILE enemy back.
 //        return actions;
 //    }
+
+    /**
+     *
+     * @param a
+     * @param b
+     * @return
+     */
     private int distance(Location a, Location b) {
         return Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y());
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "Yhorm The Giant";
 
     }
 
+    /**
+     *
+     */
     @Override
     public void resetInstance() {
         GameMap map = Application.getGameMap();
@@ -105,6 +134,10 @@ public class YhormTheGiant extends LordOfCinder implements Resettable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean isExist() {
         return true;
