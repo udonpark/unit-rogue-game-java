@@ -132,7 +132,7 @@ public class Skeleton extends Actor implements Resettable {
 
     @Override
     public String toString() {
-        return "Skeleton";
+        return String.format("Skeleton (%d/%d)",this.hitPoints,this.maxHitPoints);
     }
 
 

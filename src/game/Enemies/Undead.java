@@ -91,7 +91,7 @@ public class Undead extends Actor implements Resettable {
 
 	@Override
 	public String toString() {
-		return "Undead";
+		return String.format("Undead (%d/%d)",this.hitPoints,this.maxHitPoints);
 	}
 }
 
