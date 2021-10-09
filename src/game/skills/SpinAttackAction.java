@@ -4,6 +4,9 @@ import edu.monash.fit2099.engine.*;
 import game.Enemies.Skeleton;
 import game.Enemies.Undead;
 import game.Player;
+import game.enums.Status;
+
+import java.util.Random;
 
 
 public class SpinAttackAction extends WeaponAction {
@@ -45,7 +48,23 @@ public class SpinAttackAction extends WeaponAction {
                     for (Action drop : dropActions)
                         drop.execute(target, map);
 
-                    if (!(target instanceof Player)) {
+                    if (!(target instanceof Player)){
+                        if (target instanceof Undead){
+                            ((Player) actor).addSouls(50);
+                        }
+                        if (target instanceof Skeleton){
+                            Random rand = new Random();
+                            if (rand.nextInt(2) == 1 && !target.hasCapability(Status.WAS_REVIVED)) {
+                                target.heal(100);
+                                target.addCapability(Status.WAS_REVIVED);
+                                 return System.lineSeparator() + String.format("skeleton was revived");
+
+                            }
+                            else{
+                                map.removeActor(target);
+                                ((Player) actor).addSouls(250);
+                            }
+                        }
                         map.removeActor(target);
                     }
                 }

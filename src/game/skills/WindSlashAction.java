@@ -1,8 +1,13 @@
 package game.skills;
 
 import edu.monash.fit2099.engine.*;
+import game.Enemies.Skeleton;
+import game.Enemies.Undead;
+import game.Player;
 import game.enums.Status;
 import weapon.StormRuler;
+
+import java.util.Random;
 
 public class WindSlashAction extends WeaponAction {
     private final StormRuler weapon;
@@ -38,6 +43,7 @@ public class WindSlashAction extends WeaponAction {
                     return actor.toString() + " attacks and stuns " + target.toString();
                 }
             }
+
         }
         return "Wind Slash missed! Target has to be in adjacent squares.";
     }
