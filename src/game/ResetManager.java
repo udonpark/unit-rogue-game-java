@@ -1,7 +1,6 @@
 package game;
 
 import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.GameMap;
 import game.interfaces.Resettable;
 
 import java.util.ArrayList;
@@ -73,7 +72,7 @@ public class ResetManager {
         ArrayList<Resettable> toBeRemoved = new ArrayList<>();
         for (Resettable object: resettableList){
             if(!object.isExist()){
-                Application.getGameMap().removeActor((Actor) object);
+                Application.getProfaneCapital().removeActor((Actor) object);
                 toBeRemoved.add(object);
             }
         }

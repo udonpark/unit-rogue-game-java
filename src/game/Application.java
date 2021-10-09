@@ -15,6 +15,7 @@ import game.VendorPackage.Vendor;
 import game.bonfire.Bonfire;
 import game.ground.Dirt;
 import game.ground.Floor;
+import game.ground.FogWall;
 import weapon.StormRuler;
 
 /**
@@ -23,14 +24,16 @@ import weapon.StormRuler;
  */
 public class Application {
 	private static Player player;
-	private static GameMap gameMap;
+	private static GameMap profaneCapitalMap;
+	private static GameMap anorLondoMap;
 	public static void main(String[] args) {
 
 		World world = new World(new Display());
 
-		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(), new Bonfire(),new Vendor(), new Cemetery());
+		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(), new Bonfire(),new Vendor(), new Cemetery(),new FogWall());
 
-		List<String> map = Arrays.asList(
+
+		List<String> profaneCapital = Arrays.asList(
 				"..++++++..+++...........................++++......+++.................+++.......",
 				"........+++++..........c...................+++++++.................+++++........",
 				"...........+++.......................................................+++++......",
@@ -56,27 +59,57 @@ public class Application {
 				"_..._....._._#.++......................+...................c...............+....",
 				"...+.__..+...#+++...........................................................+...",
 				"...+.....+._.#.+.....+++++...++..............................................++.",
-				"___.......___#.++++++++++++++.+++.............................................++");
-		gameMap = new GameMap(groundFactory, map);
-		world.addGameMap(gameMap);
+				"___.......___#.++++++++++++++.+++............===============..................++");
+
+		List<String> anorLondo = Arrays.asList(
+				".............................................===============....................",
+				"...................................................................#############",
+				"...................................................................#____________",
+				"...................................................................__________F__",
+				".............................................................+.....__________B__",
+				".............................................................++....#____________",
+				"..............................................................++...#############",
+				"...............................................................+................",
+				"................................................................................",
+				"................................................................................",
+				"................................................................................",
+				"................................................................................",
+				"................................................................................",
+				"................................................................................",
+				"................................................................................",
+				"................................................................................",
+				"................................................................................",
+				"................................................................................",
+				"................................................................................",
+				"................................................................................",
+				"................................................................................",
+				"................................................................................",
+				"................................................................................",
+				"................................................................................",
+				"................................................................................",
+				"................................................................................");
+		profaneCapitalMap = new GameMap(groundFactory, profaneCapital);
+		anorLondoMap = new GameMap(groundFactory,anorLondo);
+		world.addGameMap(profaneCapitalMap);
+		world.addGameMap(anorLondoMap);
 
 
 		player = new Player("Unkindled (Player)", '@', 100);
-		world.addPlayer(player, gameMap.at(38, 12));
+		world.addPlayer(player, profaneCapitalMap.at(38, 12));
 
 		// Place Yhorm the Giant/boss in the map
 //		gameMap.at(6, 25).addActor(new LordOfCinder("Yhorm the Giant", 'Y', 500));
-		gameMap.at(6,25).addActor(new YhormTheGiant(6,25));
-		gameMap.at(7,25).addItem(new StormRuler(gameMap));
+		profaneCapitalMap.at(6,25).addActor(new YhormTheGiant(6,25));
+		profaneCapitalMap.at(7,25).addItem(new StormRuler(profaneCapitalMap));
 		// Place a Hollow in the the map
 		// FIXME: the Undead should be generated from the Cemetery
-		gameMap.at(39,5).addActor(new Skeleton("Skeleton",39,5));
-		gameMap.at(20,5).addActor(new Skeleton("Skeleton",20,5));
-		gameMap.at(20,15).addActor(new Skeleton("Skeleton",20,15));
-		gameMap.at(51,8).addActor(new Skeleton("Skeleton",51,8));
-		gameMap.at(41,14).addActor(new Skeleton("Skeleton",41,14));
-		gameMap.at(32,20).addActor(new Skeleton("Skeleton",32,20));
-		gameMap.at(28,23).addActor(new Skeleton("Skeleton",28,23));
+		profaneCapitalMap.at(39,5).addActor(new Skeleton("Skeleton",39,5));
+		profaneCapitalMap.at(20,5).addActor(new Skeleton("Skeleton",20,5));
+		profaneCapitalMap.at(20,15).addActor(new Skeleton("Skeleton",20,15));
+		profaneCapitalMap.at(51,8).addActor(new Skeleton("Skeleton",51,8));
+		profaneCapitalMap.at(41,14).addActor(new Skeleton("Skeleton",41,14));
+		profaneCapitalMap.at(32,20).addActor(new Skeleton("Skeleton",32,20));
+		profaneCapitalMap.at(28,23).addActor(new Skeleton("Skeleton",28,23));
 		world.run();
 
 	}
@@ -85,8 +118,12 @@ public class Application {
 		return player;
 	}
 
-	public static GameMap getGameMap() {
-		return gameMap;
+	public static GameMap getProfaneCapital() {
+		return profaneCapitalMap;
+	}
+
+	public static GameMap getAnorLondoMap() {
+		return anorLondoMap;
 	}
 }
 

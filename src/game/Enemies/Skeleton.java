@@ -5,7 +5,6 @@ import game.*;
 import game.enums.Status;
 import game.interfaces.Behaviour;
 import game.interfaces.Resettable;
-import game.skills.SpinAttackAction;
 import weapon.BroadSword;
 import weapon.GiantAxe;
 
@@ -74,6 +73,10 @@ public class Skeleton extends Actor implements Resettable {
 //                map.removeActor(this);
 //                player.addSouls(250);
 //            }
+        // TODO: Hammad I added this line cause the monsters kept tracking through the different maps u can remove it if u find a way to stop tehm from tracking the player
+        if(!map.contains(player)){
+            return new DoNothingAction();
+        }
         if(distance(map.locationOf(this), map.locationOf(player)) <= 1){
 //            int damage = inventory.get(0).asWeapon().damage();
 //            player.hurt(damage);
@@ -111,7 +114,7 @@ public class Skeleton extends Actor implements Resettable {
      */
     @Override
     public void resetInstance() {
-        GameMap map = Application.getGameMap();
+        GameMap map = Application.getProfaneCapital();
         if (this.isConscious()){
             map.moveActor(this, map.at(initialx,initialy));
         }else{

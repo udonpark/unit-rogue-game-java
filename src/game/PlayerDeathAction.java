@@ -51,7 +51,7 @@ public class PlayerDeathAction extends Action {
             player.transferSouls(token);
         }
         //move the player back to their last bonfire
-        map.moveActor(actor, map.at(player.getLastBonfireX(),player.getLastBonfireY()));
+        map.moveActor(actor, player.getLastMap().at(player.getLastBonfireX(),player.getLastBonfireY()));
         ResetManager.getInstance().run();
         return "\n" +
                 "██╗░░░██╗░█████╗░██╗░░░██╗  ██████╗░██╗███████╗██████╗░  ███╗░░██╗░█████╗░░█████╗░██████╗░\n" +

@@ -31,6 +31,7 @@ public class BonfireAction extends Action {
     public String execute(Actor actor, GameMap map) {
         //sets the location of last bonfire to the bonfire currently rested at by the player
         ((Player) player).setLastBonfireX(map.locationOf(player).x()); ((Player) player).setLastBonfireY(map.locationOf(player).y());
+        ((Player) player).setLastMap(map);
         resetManager.run();
 
         return "Player rested";

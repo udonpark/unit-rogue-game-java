@@ -49,6 +49,7 @@ public class Bonfire extends Ground{
         Actions actions = super.allowableActions(actor, location, direction);
         bonfireAction = new BonfireAction(actor);
         actions.add(bonfireAction);
+        actions.add(new BonfireTravelAction());
         return actions;
     }
 }

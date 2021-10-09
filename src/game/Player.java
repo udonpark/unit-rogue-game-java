@@ -27,6 +27,7 @@ public class Player extends Actor implements Soul, Resettable {
 	private Location prevLocation = null;
 
 	private int lastBonfireX = 38, lastBonfireY = 11;
+	private GameMap lastMap = Application.getProfaneCapital();
 
 	/**
 	 * Constructor.
@@ -42,6 +43,7 @@ public class Player extends Actor implements Soul, Resettable {
 		registerInstance();
 
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
+		this.addCapability(Abilities.TRAVEL_TO_PROFANE_CAP);
 		this.addCapability(Abilities.REST);
 		this.addCapability(Abilities.DRINK);
 		this.addCapability(Abilities.BUY);
@@ -236,5 +238,13 @@ public class Player extends Actor implements Soul, Resettable {
 	@Override
 	public String toString() {
 		return "Unkindled";
+	}
+
+	public GameMap getLastMap() {
+		return lastMap;
+	}
+
+	public void setLastMap(GameMap lastMap) {
+		this.lastMap = lastMap;
 	}
 }

@@ -6,7 +6,6 @@ import game.enums.Status;
 import game.interfaces.Behaviour;
 import game.interfaces.Resettable;
 import game.skills.EmberFormAction;
-import weapon.GiantAxe;
 import weapon.YhormsGreatMachete;
 
 import java.util.ArrayList;
@@ -126,7 +125,7 @@ public class YhormTheGiant extends LordOfCinder implements Resettable {
      */
     @Override
     public void resetInstance() {
-        GameMap map = Application.getGameMap();
+        GameMap map = Application.getProfaneCapital();
         if (this.isConscious()){
             this.heal(500);
             System.out.println("test");
