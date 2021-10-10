@@ -11,12 +11,13 @@ public class BonfireAction extends Action {
 
     private Actor player;
     private ResetManager resetManager;
-
+    private String name;
     /**
      * Constructor for BonfireAction
      * @param player references the actor using the action
      */
-    public BonfireAction(Actor player) {
+    public BonfireAction(Actor player,String name) {
+        this.name = name;
         this.player = player;
         resetManager = ResetManager.getInstance();
     }
@@ -44,7 +45,7 @@ public class BonfireAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return "Rest at Firelink Bonfire";
+        return "Rest at " + name;
     }
 
     /**
@@ -55,5 +56,7 @@ public class BonfireAction extends Action {
     public String hotkey() {
         return "e";
     }
+
+
 
 }

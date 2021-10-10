@@ -1,21 +1,30 @@
 package game.bonfire;
 
 import edu.monash.fit2099.engine.*;
+import game.Application;
+
+import java.util.ArrayList;
 
 public class Bonfire extends Ground{
     /**
      * Constructor for Bonfire
      */
+    private String name;
+    private boolean lit = false;
+    private boolean current = false;
+    private Location location;
+    private static ArrayList<Bonfire> bonfires = new ArrayList<>();
 
-    private BonfireAction bonfireAction;
     public Bonfire(){
         super('B');
+
     }
 
     @Override
     public void tick(Location location) {
-
         super.tick(location);
+        this.location = location;
+
     }
 
     /**
@@ -44,12 +53,49 @@ public class Bonfire extends Ground{
      * @param direction the direction of the Ground from the Actor
      * @return returns actions available to player
      */
+
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
+        if (location.map() == Application.getProfaneCapital()){
+            name = "Firelink Shrine Bonfire";
+        }
+        else if (location.map() == Application.getAnorLondoMap()){
+            name = "Anor Londo Bonfire";
+        }
         Actions actions = super.allowableActions(actor, location, direction);
-        bonfireAction = new BonfireAction(actor);
-        actions.add(bonfireAction);
-        actions.add(new BonfireTravelAction());
+        if (this.lit){
+            actions.add(new BonfireAction(actor,name));
+            for (Bonfire bonfire : bonfires){
+                if (bonfire.name != name && bonfire.isLit()){
+                    actions.add(new BonfireTravelAction(bonfire));
+                }
+            }
+        }else{actions.add(new BonfireLightAction(actor,this,name));}
         return actions;
+    }
+
+    public void toggleLit(){
+        lit = true;
+
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean isLit() {
+        return lit;
+    }
+
+    public static ArrayList<Bonfire> getBonfires() {
+        return bonfires;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

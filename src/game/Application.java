@@ -30,7 +30,8 @@ public class Application {
 
 		World world = new World(new Display());
 
-		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(), new Bonfire(),new Vendor(), new Cemetery(),new FogWall());
+		FancyGroundFactory profaneCapitalGroundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(), new Bonfire(),new Vendor(), new Cemetery(),new FogWall());
+		FancyGroundFactory anorLondoGroundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(), new Bonfire(),new Vendor(), new Cemetery(),new FogWall());
 
 
 		List<String> profaneCapital = Arrays.asList(
@@ -88,8 +89,8 @@ public class Application {
 				"................................................................................",
 				"................................................................................",
 				"................................................................................");
-		profaneCapitalMap = new GameMap(groundFactory, profaneCapital);
-		anorLondoMap = new GameMap(groundFactory,anorLondo);
+		profaneCapitalMap = new GameMap(profaneCapitalGroundFactory, profaneCapital);
+		anorLondoMap = new GameMap(anorLondoGroundFactory,anorLondo);
 		world.addGameMap(profaneCapitalMap);
 		world.addGameMap(anorLondoMap);
 
