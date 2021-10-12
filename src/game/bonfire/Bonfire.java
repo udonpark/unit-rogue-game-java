@@ -14,6 +14,7 @@ public class Bonfire extends Ground{
     private boolean current = false;
     private Location location;
     private static ArrayList<Bonfire> bonfires = new ArrayList<>();
+    private static int unnamedBonfireCount;
 
     public Bonfire(){
         super('B');
@@ -22,6 +23,10 @@ public class Bonfire extends Ground{
 
     @Override
     public void tick(Location location) {
+        if (name == null){
+            name = "Unnamed Bonfire " + unnamedBonfireCount;
+            unnamedBonfireCount++;
+        }
         super.tick(location);
         this.location = location;
 
@@ -56,10 +61,10 @@ public class Bonfire extends Ground{
 
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
-        if (location.map() == Application.getProfaneCapital()){
+        if (location.map() == Application.getProfaneCapital() && location.x() == 38 && location.y() == 11){
             name = "Firelink Shrine Bonfire";
         }
-        else if (location.map() == Application.getAnorLondoMap()){
+        else if (location.map() == Application.getAnorLondoMap() && location.x() == 76 && location.y() == 3){
             name = "Anor Londo Bonfire";
         }
         Actions actions = super.allowableActions(actor, location, direction);
@@ -78,7 +83,6 @@ public class Bonfire extends Ground{
         lit = true;
 
     }
-
     public Location getLocation() {
         return location;
     }
