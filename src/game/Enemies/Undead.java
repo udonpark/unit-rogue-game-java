@@ -77,7 +77,6 @@ public class Undead extends Actor implements Resettable {
 		};
 		if(distance(map.locationOf(this), map.locationOf(player)) <= 1){
 			return new AttackAction(player, "North");
-
 		}
 		if (distance(map.locationOf(this), map.locationOf(player)) <= 2) {
 			behaviours.remove(0);

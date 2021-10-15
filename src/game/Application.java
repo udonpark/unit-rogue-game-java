@@ -1,15 +1,14 @@
 package game;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.FancyGroundFactory;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.World;
 import game.Enemies.Skeleton;
-import game.Enemies.Undead;
 import game.Enemies.YhormTheGiant;
 import game.VendorPackage.Vendor;
 import game.bonfire.Bonfire;
@@ -26,6 +25,8 @@ public class Application {
 	private static Player player;
 	private static GameMap profaneCapitalMap;
 	private static GameMap anorLondoMap;
+	private static ArrayList<String> bonfirenames = new ArrayList<String>();
+
 	public static void main(String[] args) {
 
 		World world = new World(new Display());
@@ -87,23 +88,27 @@ public class Application {
 				"................................................................................",
 				"................................................................................",
 				"................................................................................");
+
+		bonfirenames.add("FirelinkShrine Bonfire");
+		bonfirenames.add("Anor Londo Bonfire");
 		profaneCapitalMap = new GameMap(profaneCapitalGroundFactory, profaneCapital);
 		anorLondoMap = new GameMap(anorLondoGroundFactory,anorLondo);
 		world.addGameMap(profaneCapitalMap);
 		world.addGameMap(anorLondoMap);
 
-
 		player = new Player("Unkindled (Player)", '@', 1000000);
-		world.addPlayer(player, anorLondoMap.at(75, 3));
+		world.addPlayer(player, profaneCapitalMap.at(38,12));
+//		world.addPlayer(player, anorLondoMap.at(75, 3));
+
 
 		// Place Yhorm the Giant/boss in the map
 //		gameMap.at(6, 25).addActor(new LordOfCinder("Yhorm the Giant", 'Y', 500));
 		profaneCapitalMap.at(6,25).addActor(new YhormTheGiant(6,25));
-		for (int i = 20; i < 50 ;i++){
-			for (int j = 10; j < 20; j ++)
-			anorLondoMap.at(i,j).addActor(new YhormTheGiant(i,j));
-
-		}
+//		for (int i = 20; i < 50 ;i++){
+//			for (int j = 10; j < 20; j ++)
+//			anorLondoMap.at(i,j).addActor(new YhormTheGiant(i,j));
+//
+//		}
 		profaneCapitalMap.at(7,25).addItem(new StormRuler(profaneCapitalMap));
 		// Place a Hollow in the the map
 		// FIXME: the Undead should be generated from the Cemetery
@@ -128,6 +133,10 @@ public class Application {
 
 	public static GameMap getAnorLondoMap() {
 		return anorLondoMap;
+	}
+
+	public static ArrayList<String> getBonfireNames() {
+		return bonfirenames;
 	}
 }
 
