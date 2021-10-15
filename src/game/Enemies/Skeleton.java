@@ -82,7 +82,7 @@ public class Skeleton extends Actor implements Resettable {
 //            player.hurt(damage);
             return new AttackAction(player,"");
         }
-
+// reuse exit from the engine class
         if (distance(map.locationOf(this), map.locationOf(player)) <= 2) {
             behaviours.remove(0);
             behaviours.add(new FollowBehaviour(player));

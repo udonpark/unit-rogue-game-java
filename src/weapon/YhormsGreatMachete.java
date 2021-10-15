@@ -2,23 +2,25 @@ package weapon;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
+import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.WeaponItem;
 import game.Enemies.YhormTheGiant;
+import game.Player;
 import game.enums.Status;
 import game.skills.EmberFormAction;
 
 import java.util.List;
 
 public class YhormsGreatMachete extends WeaponItem {
-    private YhormTheGiant yhorm;
+    private Actor holder;
 
     /**
      * Constructor for YhormsGreatMachete
-     * @param yhorm the yhorm who is holding Machete, as only yhorm could hold this weapon
+     * @param holder the actor who is holding Machete, both player and yhorm could hold this weapon
      */
-    public YhormsGreatMachete(YhormTheGiant yhorm){
+    public YhormsGreatMachete(Actor holder){
         super("Yhorm's Great Machete", 'Y', 95, "hits", 60);
-        this.yhorm = yhorm;
+        this.holder = holder;
     }
 
     /**
@@ -28,7 +30,7 @@ public class YhormsGreatMachete extends WeaponItem {
     @Override
     public List<Action> getAllowableActions(){
         Actions actions = new Actions();
-        if (this.yhorm.hasCapability(Status.RAGE_MODE)){
+        if (this.holder.hasCapability(Status.RAGE_MODE)){
             actions.add(new EmberFormAction(this));
         }
         return actions.getUnmodifiableActionList();
@@ -40,7 +42,7 @@ public class YhormsGreatMachete extends WeaponItem {
      */
     @Override
     public int chanceToHit(){
-        if (this.yhorm.hasCapability(Status.RAGE_MODE)){
+        if (this.holder.hasCapability(Status.RAGE_MODE)){
             return 90;
         }
         else{
