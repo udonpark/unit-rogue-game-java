@@ -1,6 +1,8 @@
 package game.CindersOfLord;
 
+import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.PickUpItemAction;
 
 public abstract class CindersOfLord extends Item {
 
@@ -13,7 +15,4 @@ public abstract class CindersOfLord extends Item {
     public CindersOfLord(String name, char displayChar, boolean portable) {
         super(name, displayChar, portable);
     }
-
-
-
 }

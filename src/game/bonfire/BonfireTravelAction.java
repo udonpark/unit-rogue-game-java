@@ -14,6 +14,12 @@ public class BonfireTravelAction extends Action {
         this.bonfire = bonfire;
     }
 
+    /**
+     * Function to allow player to travel between bonfires
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return String message that indicates the location travelled to by the player
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
 
@@ -22,14 +28,14 @@ public class BonfireTravelAction extends Action {
         return "Travelled to " + bonfire.getName();
     }
 
+    /**
+     * Method that displays a message describing the action to be undertaken
+     * @param actor The actor performing the action.
+     * @return a message describing the action to be undertaken
+     */
     @Override
     public String menuDescription(Actor actor) {
         return "Traverse to " + bonfire.getName();
 
-    }
-
-    @Override
-    public String hotkey() {
-        return super.hotkey();
     }
 }
