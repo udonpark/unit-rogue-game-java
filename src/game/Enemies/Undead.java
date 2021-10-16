@@ -34,7 +34,6 @@ public class Undead extends Actor implements Resettable {
 	 */
 	@Override
 	public void resetInstance() {
-		;
 	}
 
 	/**
@@ -74,17 +73,36 @@ public class Undead extends Actor implements Resettable {
 		// TODO: Hammad I added this line cause the monsters kept tracking through the different maps u can remove it if u find a way to stop tehm from tracking the player
 		if(!map.contains(player)){
 			return new DoNothingAction();
-		};
-		if(distance(map.locationOf(this), map.locationOf(player)) <= 1){
-			return new AttackAction(player, "North");
 		}
-		if (distance(map.locationOf(this), map.locationOf(player)) <= 2) {
-			behaviours.remove(0);
-			behaviours.add(new FollowBehaviour(player));
-		} else {
+		Location here = map.locationOf(this);
+		Location there = map.locationOf(player);
+		int currentDistance = distance(here, there);
+		if (currentDistance <= 1) {
+			for (Exit exit : here.getExits()) {
+				if (exit.getDestination() == there) {
+					return new AttackAction(player, "North");
+				}
+			}
+		}
+		if (currentDistance <= 2) {
+			for (Exit exit : here.getExits()) {
+				if (exit.getDestination() == there) {
+					behaviours.remove(0);
+					behaviours.add(new FollowBehaviour(player));
+				}
+			}
+		}
+		else{
 			behaviours.remove(0);
 			behaviours.add(new WanderBehaviour());
-		}
+			}
+//		if (distance(map.locationOf(this), map.locationOf(player)) <= 2) {
+//			behaviours.remove(0);
+//			behaviours.add(new FollowBehaviour(player));
+//		} else {
+//			behaviours.remove(0);
+//			behaviours.add(new WanderBehaviour());
+//		}
 		for (Behaviour Behaviour : behaviours) {
 			Action action = Behaviour.getAction(this, map);
 			if (action != null)
