@@ -14,6 +14,8 @@ import game.VendorPackage.Vendor;
 import game.bonfire.Bonfire;
 import game.ground.Dirt;
 import game.ground.Floor;
+import game.ground.Valley;
+import game.ground.Wall;
 import game.ground.fogwall.FogWall;
 import weapon.StormRuler;
 
