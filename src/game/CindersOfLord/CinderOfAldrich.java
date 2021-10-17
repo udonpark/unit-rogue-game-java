@@ -1,5 +1,8 @@
 package game.CindersOfLord;
 
+import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.PickUpItemAction;
+
 public class CinderOfAldrich extends CindersOfLord {
 
     /***
@@ -12,5 +15,8 @@ public class CinderOfAldrich extends CindersOfLord {
         super("CinderOfLord(Aldrich)", 'C', true);
     }
 
-
+    @Override
+    public PickUpItemAction getPickUpAction(Actor actor) {
+        return super.getPickUpAction(actor);
+    }
 }

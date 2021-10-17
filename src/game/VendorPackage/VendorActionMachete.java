@@ -2,6 +2,7 @@ package game.VendorPackage;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
+import game.CindersOfLord.CinderOfYhorm;
 import game.Player;
 import game.SwapWeaponAction;
 import weapon.BroadSword;
@@ -18,16 +19,16 @@ public class VendorActionMachete extends VendorAction {
     }
 
     /**
-     * Action class for player to purchase increase Machete from Vendor
+     * Action class for player to purchase Machete from Vendor
      * @param actor The actor performing the action.
      * @param map The map the actor is on.
      * @return String message to print to menu when it is purchased
      */
-    @Override
-    public String execute(Actor actor, GameMap map) {
+    public String execute(Actor actor, GameMap map, CinderOfYhorm machete) {
         SwapWeaponAction swap = new SwapWeaponAction(new YhormsGreatMachete(actor));
         swap.execute(actor, map);
-        this.player.subtractSouls(500); // TO BE CHANGED
+//        this.player.subtractSouls(500); // TO BE CHANGED
+        this.player.removeItemFromInventory(machete); // as a payment
         return "Paid Cinders of Lord and purchased Yhorm's Great Machete";
     }
 
