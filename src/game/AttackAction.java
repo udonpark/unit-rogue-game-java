@@ -5,10 +5,7 @@ import java.util.Random;
 import edu.monash.fit2099.engine.*;
 import game.CindersOfLord.CinderOfAldrich;
 import game.CindersOfLord.CinderOfYhorm;
-import game.Enemies.AldrichTheDevourer;
-import game.Enemies.Skeleton;
-import game.Enemies.Undead;
-import game.Enemies.YhormTheGiant;
+import game.Enemies.*;
 import game.enums.Status;
 
 /**
@@ -95,6 +92,9 @@ public class AttackAction extends Action {
 					map.removeActor(target);
 					aldrich.addItem(new CinderOfAldrich());
 					((Player) actor).addSouls(5000);
+				}
+				if (target instanceof Mimic){
+					((Player) actor).addSouls(200);
 				}
 				result += System.lineSeparator() + target + " is killed.";
 			}
