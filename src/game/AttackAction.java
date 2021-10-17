@@ -3,15 +3,20 @@ package game;
 import java.util.Random;
 
 import edu.monash.fit2099.engine.*;
+import game.Chest.Chest;
 import game.CindersOfLord.CinderOfAldrich;
 import game.CindersOfLord.CinderOfYhorm;
 import game.Enemies.*;
+import game.TokenOfSoulsPackage.TokenOfSouls;
 import game.enums.Status;
 
 /**
  * Special Action for attacking other Actors.
  */
 public class AttackAction extends Action {
+
+	TokenOfSouls token;
+	Location location;
 
 	/**
 	 * The Actor that is to be attacked
@@ -94,7 +99,17 @@ public class AttackAction extends Action {
 					((Player) actor).addSouls(5000);
 				}
 				if (target instanceof Mimic){
+
 					((Player) actor).addSouls(200);
+					int randomInt = rand.nextInt(3);
+					int i = 0;
+					while(i <= randomInt){
+						token = new TokenOfSouls("Token", '$',true);
+						token.addSouls(100);
+						map.at(map.locationOf(target).x(), map.locationOf(target).y()).addItem(token);
+						i += 1;
+					}
+					map.removeActor(target);
 				}
 				result += System.lineSeparator() + target + " is killed.";
 			}
