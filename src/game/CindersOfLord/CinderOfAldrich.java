@@ -15,4 +15,13 @@ public class CinderOfAldrich extends CindersOfLord {
         super("CinderOfLord(Aldrich)", 'C', true);
     }
 
+    /**
+     * picks up cinder by player
+     * @param actor an actor that will interact with this item
+     * @return action to pick the item
+     */
+    @Override
+    public PickUpItemAction getPickUpAction(Actor actor) {
+        return super.getPickUpAction(actor);
+    }
 }
