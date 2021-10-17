@@ -4,7 +4,9 @@ import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
+import game.CindersOfLord.CinderOfYhorm;
 import game.Player;
+import game.enums.Status;
 
 public class Vendor extends Ground {
     /**
@@ -52,6 +54,12 @@ public class Vendor extends Ground {
         }
         if (((Player) actor).getSouls() >= 1000) {
             actions.add(new VendorActionGA((Player) actor));
+        }
+        if (actor.hasCapability(Status.KILLED_YHORM)){
+            actions.add(new VendorActionMachete((Player) actor));
+        }
+        if (actor.hasCapability(Status.KILLED_ALDRICH)){
+            actions.add(new VendorActionMachete((Player) actor));
         }
         return actions;
     }

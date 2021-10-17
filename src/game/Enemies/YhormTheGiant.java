@@ -2,6 +2,7 @@ package game.Enemies;
 
 import edu.monash.fit2099.engine.*;
 import game.*;
+import game.CindersOfLord.CinderOfYhorm;
 import game.enums.Status;
 import game.interfaces.Behaviour;
 import game.interfaces.Resettable;
@@ -39,10 +40,14 @@ public class YhormTheGiant extends LordOfCinder implements Resettable {
      */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-        if (!this.isConscious()) {
-            map.removeActor(this);
-            player.addSouls(5000);
-        }
+//        if (!this.isConscious()) {
+//            player.addCapability(Status.KILLED_YHORM);
+//            System.out.println("HELLOOO");
+//            Location yhorm = map.locationOf(this);
+//            map.removeActor(this);
+//            yhorm.addItem(new CinderOfYhorm());
+//            player.addSouls(5000);
+//        }
         System.out.printf("Yhorm's HP: (%d/%d)\n", this.hitPoints, this.maxHitPoints);
         if (this.hasCapability(Status.STUNNED)) {
             this.removeCapability(Status.STUNNED);
@@ -128,7 +133,7 @@ public class YhormTheGiant extends LordOfCinder implements Resettable {
         GameMap map = Application.getProfaneCapital();
         if (this.isConscious()){
             this.heal(500);
-            System.out.println("test");
+//            System.out.println("test");
             map.moveActor(this, map.at(initialx,initialy));
         }
     }

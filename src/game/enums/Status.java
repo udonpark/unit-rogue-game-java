@@ -10,5 +10,7 @@ public enum Status {
     STUNNED, // stunned status
     RAGE_MODE, // yhorms rage mode
     WEAK_TO_STORM_RULER, // only yhorm takes certain damage from storm ruler
-    WAS_REVIVED
+    WAS_REVIVED,
+    KILLED_YHORM, // proves that the player has killed yhorm
+    KILLED_ALDRICH // proves that the player has killed aldrich
 }

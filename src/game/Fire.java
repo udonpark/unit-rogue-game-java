@@ -18,6 +18,7 @@ public class Fire extends Item {
     /**
      * This tick class is Override to increment counter each turn and keep track of it to delete after 4 turns
      * It also finds who is standing in the Yhorm, and if any actor other than Yhorm is there, deals 25 damage
+     *4
      *
      * @param currentLocation The location of the ground on which we lie.
      */
@@ -25,11 +26,11 @@ public class Fire extends Item {
     public void tick(Location currentLocation) {
         if (this.counter >= 4) {
             currentLocation.removeItem(this);
+            return;
         }
         if (currentLocation.containsAnActor() && !(currentLocation.getActor().toString().equals("Yhorm"))){
             currentLocation.getActor().hurt(25);
-        this.counter ++;
         }
-
+        this.counter ++;
     }
 }

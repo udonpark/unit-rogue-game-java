@@ -2,6 +2,7 @@ package game.Enemies;
 
 import edu.monash.fit2099.engine.*;
 import game.*;
+import game.CindersOfLord.CinderOfAldrich;
 import game.enums.Status;
 import game.interfaces.Behaviour;
 import game.interfaces.Resettable;
@@ -41,6 +42,8 @@ public class AldrichTheDevourer extends LordOfCinder implements Resettable {
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         if (!this.isConscious()) {
+            map.locationOf(this).addItem(new CinderOfAldrich());
+            player.addCapability(Status.KILLED_ALDRICH);
             map.removeActor(this);
             player.addSouls(5000);
         }
@@ -128,7 +131,7 @@ public class AldrichTheDevourer extends LordOfCinder implements Resettable {
     public void resetInstance() {
         GameMap map = Application.getProfaneCapital();
         if (this.isConscious()){
-            this.heal(500);
+            this.heal(350);
 //            System.out.println("test");
             map.moveActor(this, map.at(initialx,initialy));
         }

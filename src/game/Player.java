@@ -36,7 +36,6 @@ public class Player extends Actor implements Soul, Resettable {
 	 * @param displayChar Character to represent the player in the UI
 	 * @param hitPoints   Player's starting number of hitpoints
 	 */
-	//TODO: initialize weapon for player
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
 		resetInstanceSouls();
@@ -53,21 +52,22 @@ public class Player extends Actor implements Soul, Resettable {
 		this.estus = new EstusFlask(3, 3);
 		this.estusAction = new EstusFlaskAction(estus, maxHitPoints);
 
-		//Initialize the vendor actions available to player
-//		this.vendorActionHP = new VendorActionHP(this);
-//		this.vendorActionBS = new VendorActionBS(this);
-//		this.vendorActionGA = new VendorActionGA(this);
-
 		//In the case of death this action class is executed to handle all death events
 		this.playerDeath = new PlayerDeathAction(this);
 
 		//Initializes the inventory of the player, specifically to add its weapon
 		this.inventory.add(new BroadSword(this));
 
-
-
 	}
 
+	/**
+	 * Function that processes the player's turn and returns the actions available to the player
+	 * @param actions    collection of possible Actions for this Actor
+	 * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+	 * @param map        the map containing the Actor
+	 * @param display    the I/O object to which messages may be written
+	 * @return returns an action to be undertaken by the player
+	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		// Retrieve the player location after each turn, useful when processing certain conditions
@@ -123,7 +123,6 @@ public class Player extends Actor implements Soul, Resettable {
 	 */
 	@Override
 	public void transferSouls(Soul soulObject) {
-		//TODO: transfer Player's souls to another Soul's instance.
 		soulObject.addSouls(currentSouls);
 		this.subtractSouls(currentSouls);
 	}
@@ -171,6 +170,7 @@ public class Player extends Actor implements Soul, Resettable {
 		return String.format("Unkindled (%d/%d), holding %s, %d souls", hitPoints, maxHitPoints, getWeapon(), currentSouls);
 
 	}
+
 
 	/**
 	 * Getter for the player's soul/currency variable
@@ -235,15 +235,27 @@ public class Player extends Actor implements Soul, Resettable {
 		this.lastBonfireY = lastBonfireY;
 	}
 
+	/**
+	 * toString function
+	 * @return a string that represents the current instance of the class
+	 */
 	@Override
 	public String toString() {
 		return "Unkindled";
 	}
 
+	/**
+	 * getter for the GameMap where the playrr last rested
+	 * @return gameMap where the player last rested
+	 */
 	public GameMap getLastMap() {
 		return lastMap;
 	}
 
+	/**
+	 * setter for the last map in which the player rested
+	 * @param lastMap the map where the player rested
+	 */
 	public void setLastMap(GameMap lastMap) {
 		this.lastMap = lastMap;
 	}

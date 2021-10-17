@@ -16,7 +16,7 @@ public class EmberFormAction extends WeaponAction{
     }
 
     /**
-     * Only Yhorm can hold Machete, and hence able to execute this WeaponAction.
+     * Only Yhorm AND PLAYER can hold Machete, and hence able to execute this WeaponAction.
      * This turns adjacent dirt into fire for 4 turns which deals 25 to non-Yhorm.
      * This is done by adding item to the ground.
      *
@@ -48,7 +48,7 @@ public class EmberFormAction extends WeaponAction{
 //        if (floor.getGround().getDisplayChar() == '.'){
 //            floor.addItem(new Fire());
         }
-        return "Ember Form activated! Yhorm The Giant uses Burn Ground!";
+        return "Ember Form activated! Burn Ground ability is used!";
     }
 
     /**
@@ -58,7 +58,7 @@ public class EmberFormAction extends WeaponAction{
      */
     @Override
     public String menuDescription(Actor actor) {
-        return "Yhorm would burn adjacent floors";
+        return "Use Machete to burn adjacent floors";
     }
 
 }

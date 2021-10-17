@@ -62,6 +62,17 @@ public class Skeleton extends Actor implements Resettable {
      */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+        if (!this.isConscious()) {
+            Random rand = new Random();
+            if (rand.nextInt(2) == 0 && !(this.hasCapability(Status.WAS_REVIVED))) {
+                this.heal(100);
+                this.addCapability(Status.WAS_REVIVED);
+            } else {
+                map.removeActor(this);
+                display.println("Skeleton has died!");
+            }
+            return new DoNothingAction();
+        }
 //        if (!this.isConscious()) {
 //            int counter = 0;
 //            Random rand = new Random();
