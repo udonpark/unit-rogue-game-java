@@ -131,7 +131,7 @@ public class AldrichTheDevourer extends LordOfCinder implements Resettable {
     public void resetInstance() {
         GameMap map = Application.getProfaneCapital();
         if (this.isConscious()){
-            this.heal(500);
+            this.heal(350);
 //            System.out.println("test");
             map.moveActor(this, map.at(initialx,initialy));
         }

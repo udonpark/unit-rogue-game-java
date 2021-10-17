@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.FancyGroundFactory;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.World;
+import game.Enemies.AldrichTheDevourer;
 import game.Enemies.Skeleton;
 import game.Enemies.YhormTheGiant;
 import game.VendorPackage.Vendor;
@@ -85,7 +86,7 @@ public class Application {
 				".....#...........#.......#....#.......................+.........................",
 				".....#...__.#............#....#.......................+.........................",
 				".....#..............#.........#.................................................",
-				".....#....#...................#................c................................",
+				".....#....#..........F........#................c................................",
 				".....###################___####.................................................",
 				"................................................................................",
 				"................................................................................",
@@ -100,13 +101,14 @@ public class Application {
 
 		player = new Player("Unkindled (Player)", '@', 1000000);
 //		world.addPlayer(player, profaneCapitalMap.at(38,12));
-		world.addPlayer(player, profaneCapitalMap.at(8,25));
+		world.addPlayer(player, anorLondoMap.at(23,25));
 //		world.addPlayer(player, anorLondoMap.at(75, 3));
 
 
 		// Place Yhorm the Giant/boss in the map
 //		gameMap.at(6, 25).addActor(new LordOfCinder("Yhorm the Giant", 'Y', 500));
 		profaneCapitalMap.at(6,25).addActor(new YhormTheGiant(6,25));
+		anorLondoMap.at(17,20).addActor(new AldrichTheDevourer(17,20));
 //		for (int i = 20; i < 50 ;i++){
 //			for (int j = 10; j < 20; j ++)
 //			anorLondoMap.at(i,j).addActor(new YhormTheGiant(i,j));

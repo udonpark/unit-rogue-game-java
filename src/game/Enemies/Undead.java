@@ -70,10 +70,10 @@ public class Undead extends Actor implements Resettable {
 //			map.removeActor(this);
 //			player.addSouls(50);
 //		}
-		// TODO: Hammad I added this line cause the monsters kept tracking through the different maps u can remove it if u find a way to stop tehm from tracking the player
-		if(!map.contains(player)){
-			return new DoNothingAction();
-		}
+//		// TODO: Hammad I added this line cause the monsters kept tracking through the different maps u can remove it if u find a way to stop tehm from tracking the player
+//		if(!map.contains(player)){
+//			return new DoNothingAction();
+//		}
 		Location here = map.locationOf(this);
 		Location there = map.locationOf(player);
 		int currentDistance = distance(here, there);
