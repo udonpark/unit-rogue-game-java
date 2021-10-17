@@ -55,11 +55,9 @@ public class Vendor extends Ground {
             actions.add(new VendorActionGA((Player) actor));
         }
         if (actor.hasCapability(Status.KILLED_YHORM)){
-            actor.removeCapability(Status.KILLED_YHORM);
             actions.add(new VendorActionMachete((Player) actor));
         }
         if (actor.hasCapability(Status.KILLED_ALDRICH)){
-            actor.removeCapability(Status.KILLED_ALDRICH);
             actions.add(new VendorActionMachete((Player) actor));
         }
         return actions;
