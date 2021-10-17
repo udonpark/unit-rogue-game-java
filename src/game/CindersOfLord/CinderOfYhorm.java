@@ -12,11 +12,11 @@ public class CinderOfYhorm extends CindersOfLord{
         super("CinderOfLord(Yhorm)", 'C');
     }
 
-//    /**
-//     * Player picks up cinder
-//     * @param actor an actor that will interact with this item
-//     * @return action to pick up
-//     */
+    /**
+     * Player picks up cinder
+     * @param actor an actor that will interact with this item
+     * @return action to pick up
+     */
     @Override
     public PickUpItemAction getPickUpAction(Actor actor) {
         return super.getPickUpAction(actor);

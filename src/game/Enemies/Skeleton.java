@@ -11,7 +11,7 @@ import weapon.GiantAxe;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Skeleton extends Actor implements Resettable {
+public class Skeleton extends Enemies implements Resettable {
     /**
      *
      */

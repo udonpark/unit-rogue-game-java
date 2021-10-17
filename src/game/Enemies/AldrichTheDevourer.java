@@ -68,7 +68,7 @@ public class AldrichTheDevourer extends LordOfCinder implements Resettable {
         }
         else if (behaviours.size() > 0){
             map.moveActor(this, map.at(initialx,initialy));
-            for (int i  = 0; i < behaviours.size();i++){behaviours.remove(i);}}
+            behaviours.removeAll(behaviours);}
 
         for (Behaviour Behaviour : behaviours) {
             Action action = Behaviour.getAction(this, map);

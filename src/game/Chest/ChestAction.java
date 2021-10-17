@@ -27,7 +27,7 @@ public class ChestAction extends Action {
         map.removeActor(chest);
         int randInt = rand.nextInt(2);
         if(randInt == 0){
-            map.addActor(new Mimic("Mimic"), Application.getProfaneCapital().at(location.x(), location.y()));
+            map.addActor(new Mimic("Mimic"),map.at(location.x(), location.y()));
             return "Mimic spawned";
         }
         else{

@@ -42,7 +42,6 @@ public class YhormTheGiant extends LordOfCinder implements Resettable {
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 //        if (!this.isConscious()) {
 //            player.addCapability(Status.KILLED_YHORM);
-//            System.out.println("HELLOOO");
 //            Location yhorm = map.locationOf(this);
 //            map.removeActor(this);
 //            yhorm.addItem(new CinderOfYhorm());
@@ -67,7 +66,7 @@ public class YhormTheGiant extends LordOfCinder implements Resettable {
             behaviours.add(new FollowBehaviour(player));
         }else if (behaviours.size() > 0){
             map.moveActor(this, map.at(initialx,initialy));
-            for (int i  = 0; i < behaviours.size();i++){behaviours.remove(i);}}
+            behaviours.removeAll(behaviours);}
 
         for (Behaviour Behaviour : behaviours) {
             Action action = Behaviour.getAction(this, map);

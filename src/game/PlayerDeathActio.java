@@ -6,7 +6,7 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
 import game.TokenOfSoulsPackage.TokenOfSouls;
 
-public class PlayerDeathAction extends Action {
+public class PlayerDeathActio extends Action {
     Location lastLocation;
     Player player;
     TokenOfSouls token;
@@ -15,7 +15,7 @@ public class PlayerDeathAction extends Action {
      * Constructor for the player death action class
      * @param player the actor controlled by the player
      */
-    public PlayerDeathAction(Player player){
+    public PlayerDeathActio(Player player){
         this.player =player;
 
     }
