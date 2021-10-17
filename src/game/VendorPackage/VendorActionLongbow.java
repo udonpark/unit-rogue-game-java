@@ -2,6 +2,8 @@ package game.VendorPackage;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Item;
+import game.CindersOfLord.CinderOfAldrich;
 import game.Player;
 import game.SwapWeaponAction;
 import weapon.BroadSword;
@@ -25,11 +27,20 @@ public class VendorActionLongbow extends VendorAction {
      * @param map The map the actor is on.
      * @return String message to print to menu when it is purchased
      */
-    @Override
-    public String execute(Actor actor, GameMap map) {
+    public String execute(Actor actor, GameMap map, CinderOfAldrich cinder) {
+        boolean has_cinder = false;
+        for (Item item: this.player.getInventory()) {
+            if (item.toString().equals("CinderOfLord(Yhorm)")){
+                has_cinder = true;
+            }
+        }
+        if (!has_cinder){
+            return "You have defeated Aldrich, but do not have Cinder Of Lord with you!";
+        }
+        // only if player has cinder, then accept the trade
         SwapWeaponAction swap = new SwapWeaponAction(new DarkmoonLongbow(actor));
         swap.execute(actor, map);
-        this.player.subtractSouls(500); // TO BE CHANGED
+        this.player.removeItemFromInventory(cinder);
         return "Paid Cinder of Lord and purchased Darkmoon Longbow";
     }
 

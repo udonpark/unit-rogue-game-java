@@ -171,6 +171,7 @@ public class Player extends Actor implements Soul, Resettable {
 
 	}
 
+
 	/**
 	 * Getter for the player's soul/currency variable
 	 *

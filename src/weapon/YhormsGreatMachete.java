@@ -1,9 +1,6 @@
 package weapon;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actions;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.WeaponItem;
+import edu.monash.fit2099.engine.*;
 import game.Enemies.YhormTheGiant;
 import game.Player;
 import game.enums.Status;
@@ -21,6 +18,7 @@ public class YhormsGreatMachete extends WeaponItem {
     public YhormsGreatMachete(Actor holder){
         super("Yhorm's Great Machete", 'Y', 95, "hits", 60);
         this.holder = holder;
+        this.portable = false;
     }
 
     /**
@@ -30,9 +28,15 @@ public class YhormsGreatMachete extends WeaponItem {
     @Override
     public List<Action> getAllowableActions(){
         Actions actions = new Actions();
-        if (this.holder.hasCapability(Status.RAGE_MODE)){
+        if (this.holder.toString().equals("Unkindled")){ // player can use the ability anytime
             actions.add(new EmberFormAction(this));
         }
+        else if (this.holder.toString().equals("Yhorm The Giant")){
+            if (this.holder.hasCapability(Status.RAGE_MODE)){
+                actions.add(new EmberFormAction(this));
+            }
+        }
+
         return actions.getUnmodifiableActionList();
     }
 
@@ -49,4 +53,5 @@ public class YhormsGreatMachete extends WeaponItem {
             return super.chanceToHit();
         }
     }
+
 }

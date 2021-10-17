@@ -99,7 +99,8 @@ public class Application {
 		world.addGameMap(anorLondoMap);
 
 		player = new Player("Unkindled (Player)", '@', 1000000);
-		world.addPlayer(player, profaneCapitalMap.at(38,12));
+//		world.addPlayer(player, profaneCapitalMap.at(38,12));
+		world.addPlayer(player, profaneCapitalMap.at(8,25));
 //		world.addPlayer(player, anorLondoMap.at(75, 3));
 
 

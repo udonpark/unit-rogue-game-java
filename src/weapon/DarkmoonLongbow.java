@@ -17,6 +17,7 @@ public class DarkmoonLongbow extends WeaponItem {
     public DarkmoonLongbow(Actor holder){
         super("Darkmoon Longbow", 'D', 70, "hits", 80);
         this.holder = holder;
+        this.portable = false;
     }
 
     /**
@@ -26,9 +27,10 @@ public class DarkmoonLongbow extends WeaponItem {
     @Override
     public List<Action> getAllowableActions(){
         Actions actions = new Actions();
-        if (this.holder.hasCapability(Status.RAGE_MODE)){
-            actions.add(new EmberFormAction(this));
-        }
+        // Since implementation of Ember Form are optional, there is no Allowable Actions here
+//        if (this.holder.hasCapability(Status.RAGE_MODE)){
+//            actions.add(new EmberFormAction(this));
+//        }
         return actions.getUnmodifiableActionList();
     }
 
@@ -45,4 +47,5 @@ public class DarkmoonLongbow extends WeaponItem {
             return super.damage();
         }
     }
+
 }
