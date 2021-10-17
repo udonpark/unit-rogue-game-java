@@ -32,8 +32,8 @@ public class Application {
 	public static void main(String[] args) {
 
 		World world = new World(new Display());
-		FancyGroundFactory profaneCapitalGroundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(), new Bonfire(),new Vendor(), new Cemetery(),new FogWall());
-		FancyGroundFactory anorLondoGroundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(), new Bonfire(),new Vendor(), new Cemetery(),new FogWall());
+		FancyGroundFactory profaneCapitalGroundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(),new Vendor(), new Cemetery(),new FogWall());
+		FancyGroundFactory anorLondoGroundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(),new Vendor(), new Cemetery(),new FogWall());
 
 		List<String> profaneCapital = Arrays.asList(
 				"..++++++..+++...........................++++......+++.................+++.......",
@@ -47,7 +47,7 @@ public class Application {
 				"....c........................................................+++++++............",
 				"..................................###___###...................+++...............",
 				"..................................#_______#......................+++............",
-				"...........++.....................#__FB___#.......................+.............",
+				"...........++.....................#__F____#.......................+.............",
 				".........+++......................#_______#........................++...........",
 				"............+++...................####_####..........................+..........",
 				"..............+......................................................++.........",
@@ -67,7 +67,7 @@ public class Application {
 				".............................................===============....................",
 				".....................................++.............................############",
 				"...............+++........+++.........++............................###_________",
-				"..............+++++.....++++++......................................________BF__",
+				"..............+++++.....++++++......................................_________F__",
 				".............+++++++..+++++++.........c....................+++......###_________",
 				"....+++.......++++++++++++++...............................++++......###########",
 				"......+........+++++++++++++..................................++................",
@@ -91,10 +91,10 @@ public class Application {
 				"................................................................................",
 				"................................................................................");
 
-		bonfirenames.add("FirelinkShrine Bonfire");
-		bonfirenames.add("Anor Londo Bonfire");
 		profaneCapitalMap = new GameMap(profaneCapitalGroundFactory, profaneCapital);
+		profaneCapitalMap.at(38,11).setGround(new Bonfire("Firelink Shrine Bonfire"));
 		anorLondoMap = new GameMap(anorLondoGroundFactory,anorLondo);
+		anorLondoMap.at(75,3).setGround(new Bonfire("Anor Londo Bonfire"));
 		world.addGameMap(profaneCapitalMap);
 		world.addGameMap(anorLondoMap);
 

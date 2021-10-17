@@ -22,20 +22,21 @@ public class Bonfire extends Ground{
     }
 
     /**
+     * Constructor for bonfire
+     * @param name string that represents the bonfire's name
+     */
+    public Bonfire(String name){
+        super('B');
+        this.name = name;
+    }
+
+    /**
      * Tick called every turn, function updates the location of bonfire and names them according to the order they are generated
      * @param location The location of the Ground
      */
     @Override
     public void tick(Location location) {
-        bonfireNames = Application.getBonfireNames();
-        if (name == null){
 
-            if (bonfireCount < bonfireNames.size()){
-                name = bonfireNames.get(bonfireCount);
-                bonfireCount++;
-            }else{name = "Bonfire #"+bonfireCount+" - Unnamed Bonfire";}
-
-        }
         super.tick(location);
         this.location = location;
 
@@ -70,10 +71,8 @@ public class Bonfire extends Ground{
 
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
-        if (bonfireCount == 0){
-            bonfireNames = Application.getBonfireNames();
-            name = bonfireNames.get(bonfireCount);
-            bonfireCount++;
+        if (name == null){
+            return super.allowableActions(actor, location, direction);
         }
         Actions actions = super.allowableActions(actor, location, direction);
         if (this.lit){
@@ -92,7 +91,6 @@ public class Bonfire extends Ground{
      */
     public void lightBonfire(){
         lit = true;
-
     }
 
     /**
