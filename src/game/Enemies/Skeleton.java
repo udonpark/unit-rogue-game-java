@@ -73,7 +73,6 @@ public class Skeleton extends Actor implements Resettable {
 //                map.removeActor(this);
 //                player.addSouls(250);
 //            }
-        // TODO: Hammad I added this line cause the monsters kept tracking through the different maps u can remove it if u find a way to stop tehm from tracking the player
         if(!map.contains(player)){
             return new DoNothingAction();
         }
