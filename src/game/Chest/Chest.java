@@ -6,8 +6,11 @@ import game.Enemies.Enemies;
 import game.Player;
 import game.enums.Status;
 import game.ground.fogwall.FogWallAction;
+import game.interfaces.Resettable;
 
-public class Chest extends Enemies {
+import java.util.ArrayList;
+
+public class Chest extends Enemies   {
     /**
      * Constructor.
      *
@@ -42,4 +45,5 @@ public class Chest extends Enemies {
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         return new DoNothingAction();
     }
+
 }

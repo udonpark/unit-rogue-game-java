@@ -3,6 +3,8 @@ package game.bonfire;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Location;
+import game.Chest.Chest;
 import game.Player;
 import game.ResetManager;
 import game.estusFlask.EstusFlask;
@@ -33,6 +35,8 @@ public class BonfireAction extends Action {
         //sets the location of last bonfire to the bonfire currently rested at by the player
         ((Player) player).setLastBonfireX(map.locationOf(player).x()); ((Player) player).setLastBonfireY(map.locationOf(player).y());
         ((Player) player).setLastMap(map);
+
+
         resetManager.run();
 
         return "Player rested";
