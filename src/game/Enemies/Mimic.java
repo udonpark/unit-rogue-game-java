@@ -19,6 +19,10 @@ public class Mimic extends Enemies implements Resettable {
     private ArrayList<Behaviour> behaviours = new ArrayList<>();
     private Player player;
 
+    /**
+     *
+     * @param name
+     */
     public Mimic(String name) {
         super(name, 'M', 100);
         behaviours.add(new WanderBehaviour());
@@ -26,6 +30,14 @@ public class Mimic extends Enemies implements Resettable {
         registerInstance();
     }
 
+    /**
+     *
+     * @param actions    collection of possible Actions for this Actor
+     * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+     * @param map        the map containing the Actor
+     * @param display    the I/O object to which messages may be written
+     * @return
+     */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         if(!map.contains(player)){
@@ -57,15 +69,28 @@ public class Mimic extends Enemies implements Resettable {
         return new DoNothingAction();
     }
 
+    /**
+     *
+     * @param a
+     * @param b
+     * @return
+     */
     private int distance(Location a, Location b) {
         return Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y());
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(55, "kicks");
     }
 
+    /**
+     *
+     */
     @Override
     public void resetInstance() {
         if (Application.getProfaneCapital().contains(this)){
@@ -75,6 +100,13 @@ public class Mimic extends Enemies implements Resettable {
         }
     }
 
+    /**
+     *
+     * @param otherActor the Actor that might be performing attack
+     * @param direction  String representing the direction of the other Actor
+     * @param map        current GameMap
+     * @return
+     */
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
         Actions actions = new Actions();
@@ -85,6 +117,10 @@ public class Mimic extends Enemies implements Resettable {
         return actions;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean isExist() {
         return true;
