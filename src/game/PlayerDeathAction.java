@@ -62,6 +62,11 @@ public class PlayerDeathAction extends Action {
                 "░░░╚═╝░░░░╚════╝░░╚═════╝░  ╚═════╝░╚═╝╚══════╝╚═════╝░  ╚═╝░░╚══╝░╚════╝░░╚════╝░╚═════╝░";
     }
 
+    /**
+     * Method that returns a description of the action that can be udnertaken
+     * @param actor The actor performing the action.
+     * @return string description of an action
+     */
     @Override
     public String menuDescription(Actor actor) {
         return "null";
