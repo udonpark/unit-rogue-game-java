@@ -1,9 +1,15 @@
 package weapon;
 
 import edu.monash.fit2099.engine.*;
+import game.Application;
+import game.AttackAction;
+import game.Chest.Chest;
+import game.Enemies.Enemies;
+import game.Player;
 import game.enums.Status;
 import game.skills.EmberFormAction;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -27,10 +33,54 @@ public class DarkmoonLongbow extends WeaponItem {
     @Override
     public List<Action> getAllowableActions(){
         Actions actions = new Actions();
+        GameMap map;
+        if (Application.getProfaneCapital().contains(holder)){
+            map = Application.getProfaneCapital();
+        }else{map = Application.getAnorLondoMap();}
+        Location here = map.locationOf(holder);
+        Location there;
+        ArrayList<Actor> actorsInRange = new ArrayList<>();
+        for (Exit exit: here.getExits()){
+
+            for (int i = -2; i<3;i++){
+                for (int j = -2; j < 3; j++){
+                    there = new Location(exit.getDestination().map(), exit.getDestination().x()+i, exit.getDestination().y()+j);
+                    if (there.getActor() instanceof Chest) {
+                        continue;
+
+                    }
+                    if (there.getActor() instanceof Player && there.getActor() != holder) {
+                        actions.add(new AttackAction(there.getActor(),""));
+
+                    }
+                    else if (there.containsAnActor() && there.getActor() != holder && !((Enemies)there.getActor()).isInRange()) {
+                        ((Enemies) there.getActor()).setInRange(true);
+                        actorsInRange.add(there.getActor());
+                        String direction = "";
+                        if (here.y()< there.y()){
+                            direction += " South ";
+                        }
+                        if (here.y() > there.y()) {
+                            direction += " North ";
+                        }
+                        if(here.x() > there.x()){
+                            direction += " West ";
+                        }
+                        if(here.x() < there.x()){
+                            direction += " East ";
+                        }
+                        actions.add(new AttackAction(there.getActor(), direction));
+                    }
+                }
+            }
+        }
         // Since implementation of Ember Form are optional, there is no Allowable Actions here
 //        if (this.holder.hasCapability(Status.RAGE_MODE)){
 //            actions.add(new EmberFormAction(this));
 //        }
+        for (Actor actors: actorsInRange ){
+            ((Enemies) actors).setInRange(false);
+        }
         return actions.getUnmodifiableActionList();
     }
 

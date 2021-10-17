@@ -8,7 +8,7 @@ import game.interfaces.Resettable;
 
 import java.util.ArrayList;
 
-public class Mimic extends Actor implements Resettable {
+public class Mimic extends Enemies implements Resettable {
     /**
      * Constructor.
      *
@@ -68,7 +68,11 @@ public class Mimic extends Actor implements Resettable {
 
     @Override
     public void resetInstance() {
-
+        if (Application.getProfaneCapital().contains(this)){
+            Application.getProfaneCapital().removeActor(this);
+        }else{
+            Application.getAnorLondoMap().removeActor(this);
+        }
     }
 
     @Override
@@ -83,6 +87,6 @@ public class Mimic extends Actor implements Resettable {
 
     @Override
     public boolean isExist() {
-        return false;
+        return true;
     }
 }

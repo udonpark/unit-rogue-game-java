@@ -102,8 +102,8 @@ public class Application {
 
 		player = new Player("Unkindled (Player)", '@', 1000000);
 //		world.addPlayer(player, profaneCapitalMap.at(38,12));
-		world.addPlayer(player, anorLondoMap.at(23,25));
-//		world.addPlayer(player, anorLondoMap.at(75, 3));
+//		world.addPlayer(player, anorLondoMap.at(23,25));
+		world.addPlayer(player, anorLondoMap.at(75, 3));
 
 
 		// Place Yhorm the Giant/boss in the map

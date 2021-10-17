@@ -1,10 +1,6 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
-import game.VendorPackage.VendorActionBS;
-import game.VendorPackage.VendorActionGA;
-import game.VendorPackage.VendorActionHP;
-import game.bonfire.BonfireAction;
 import game.enums.Abilities;
 import game.enums.Status;
 import game.estusFlask.EstusFlask;
@@ -12,7 +8,6 @@ import game.estusFlask.EstusFlaskAction;
 import game.interfaces.Resettable;
 import game.interfaces.Soul;
 import weapon.BroadSword;
-
 /**
  * Class representing the Player.
  */
@@ -23,7 +18,7 @@ public class Player extends Actor implements Soul, Resettable {
 	private EstusFlaskAction estusAction;
 	private int currentSouls;
 
-	private PlayerDeathAction playerDeath;
+	private PlayerDeathActio playerDeath;
 	private Location prevLocation = null;
 
 	private int lastBonfireX = 38, lastBonfireY = 11;
@@ -46,6 +41,7 @@ public class Player extends Actor implements Soul, Resettable {
 		this.addCapability(Abilities.REST);
 		this.addCapability(Abilities.DRINK);
 		this.addCapability(Abilities.BUY);
+		this.addCapability(Abilities.CAN_OPEN_CHEST);
 		// this.addCapability(Status.PASSING_THROUGH_WALLS);
 
 		//Initialize Estus Flask and action
@@ -53,7 +49,7 @@ public class Player extends Actor implements Soul, Resettable {
 		this.estusAction = new EstusFlaskAction(estus, maxHitPoints);
 
 		//In the case of death this action class is executed to handle all death events
-		this.playerDeath = new PlayerDeathAction(this);
+		this.playerDeath = new PlayerDeathActio(this);
 
 		//Initializes the inventory of the player, specifically to add its weapon
 		this.inventory.add(new BroadSword(this));

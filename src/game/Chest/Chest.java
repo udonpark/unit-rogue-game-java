@@ -2,10 +2,12 @@ package game.Chest;
 
 import edu.monash.fit2099.engine.*;
 import game.AttackAction;
+import game.Enemies.Enemies;
+import game.Player;
 import game.enums.Status;
 import game.ground.fogwall.FogWallAction;
 
-public class Chest extends Actor {
+public class Chest extends Enemies {
     /**
      * Constructor.
      *
@@ -28,8 +30,9 @@ public class Chest extends Actor {
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
         Actions actions = new Actions();
         // it can be attacked only by the HOSTILE opponent, and this action will not attack the HOSTILE enemy back.
-        if (otherActor.hasCapability(Status.CAN_OPEN_CHEST)) {
+        if (otherActor instanceof Player) {
             actions.add(new ChestAction(this));
+
         }
         return actions;
     }

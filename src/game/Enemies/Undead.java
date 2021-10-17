@@ -12,10 +12,11 @@ import weapon.GiantAxe;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Undead extends Actor implements Resettable {
+public class Undead extends Enemies implements Resettable {
 	// Will need to change this to a collection if Undeads gets additional Behaviours.
 	private ArrayList<Behaviour> behaviours = new ArrayList<>();
 	private Player player;
+	private boolean inRange = false;
 
 	/**
 	 * Constructor.
@@ -151,5 +152,6 @@ public class Undead extends Actor implements Resettable {
 	public String toString() {
 		return String.format("Undead (%d/%d)",this.hitPoints,this.maxHitPoints);
 	}
+
 }
 

@@ -33,7 +33,7 @@ public class VendorActionLongbow extends VendorAction {
         boolean has_cinder = false;
         CinderOfAldrich cinder = null;
         for (Item item: this.player.getInventory()) {
-            if (item.toString().equals("CinderOfLord(Yhorm)")){
+            if (item.toString().equals("CinderOfLord(Aldrich)")){
                 has_cinder = true;
                 cinder = (CinderOfAldrich) item;
             }

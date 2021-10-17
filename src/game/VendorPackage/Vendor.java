@@ -59,7 +59,7 @@ public class Vendor extends Ground {
             actions.add(new VendorActionMachete((Player) actor));
         }
         if (actor.hasCapability(Status.KILLED_ALDRICH)){
-            actions.add(new VendorActionMachete((Player) actor));
+            actions.add(new VendorActionLongbow((Player) actor));
         }
         return actions;
     }

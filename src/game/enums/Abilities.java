@@ -8,5 +8,6 @@ public enum Abilities {
     DRINK, //represents player interaction with estus flask
     BUY, //represents interaction with firekeeper
     TRAVEL_TO_PROFANE_CAP,
-    TRAVEL_TO_ANOR_LONDO
+    TRAVEL_TO_ANOR_LONDO,
+    CAN_OPEN_CHEST
 }
