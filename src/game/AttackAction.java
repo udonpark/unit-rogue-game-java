@@ -67,9 +67,9 @@ public class AttackAction extends Action {
 			if (!(target instanceof Player)) {
 				if (target instanceof Undead) {
 					((Player) actor).addSouls(50);
+					map.removeActor(target);
 				}
 				if (target instanceof Skeleton) {
-
 					((Player) actor).addSouls(250);
 					Random rand = new Random();
 					if (rand.nextInt(2) == 1 && !target.hasCapability(Status.WAS_REVIVED)) {
@@ -82,7 +82,7 @@ public class AttackAction extends Action {
 					}
 				}
 				if (target instanceof YhormTheGiant) {
-					((Player) actor).addCapability(Status.KILLED_YHORM);
+					actor.addCapability(Status.KILLED_YHORM);
 					Location yhorm = map.locationOf(target);
 					map.removeActor(target);
 					yhorm.addItem(new CinderOfYhorm());
@@ -90,7 +90,7 @@ public class AttackAction extends Action {
 				}
 
 				if (target instanceof AldrichTheDevourer) {
-					((Player) actor).addCapability(Status.KILLED_ALDRICH);
+					actor.addCapability(Status.KILLED_ALDRICH);
 					Location aldrich = map.locationOf(target);
 					map.removeActor(target);
 					aldrich.addItem(new CinderOfAldrich());

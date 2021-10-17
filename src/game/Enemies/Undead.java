@@ -66,10 +66,12 @@ public class Undead extends Actor implements Resettable {
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 //         loop through all behaviours
      	Random rand = new Random();
-//		if (!this.isConscious()) {
-//			map.removeActor(this);
+		if (!this.isConscious()) {
+			map.removeActor(this);
+			display.println("Undead has died!");
 //			player.addSouls(50);
-//		}
+			return new DoNothingAction();
+		}
 		// TODO: Hammad I added this line cause the monsters kept tracking through the different maps u can remove it if u find a way to stop tehm from tracking the player
 		if(!map.contains(player)){
 			return new DoNothingAction();
