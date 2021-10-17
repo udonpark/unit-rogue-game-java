@@ -64,6 +64,6 @@ public class VendorActionLongbow extends VendorAction {
      */
     @Override
     public String hotkey() {
-        return "m";
+        return "l";
     }
 }
