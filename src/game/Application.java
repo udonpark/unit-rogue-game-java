@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.FancyGroundFactory;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.World;
+import game.Chest.Chest;
 import game.Enemies.AldrichTheDevourer;
 import game.Enemies.Skeleton;
 import game.Enemies.YhormTheGiant;
@@ -109,6 +110,7 @@ public class Application {
 //		gameMap.at(6, 25).addActor(new LordOfCinder("Yhorm the Giant", 'Y', 500));
 		profaneCapitalMap.at(6,25).addActor(new YhormTheGiant(6,25));
 		anorLondoMap.at(17,20).addActor(new AldrichTheDevourer(17,20));
+		anorLondoMap.at(60, 3).addActor(new Chest("Chest",60,3, anorLondoMap));
 //		for (int i = 20; i < 50 ;i++){
 //			for (int j = 10; j < 20; j ++)
 //			anorLondoMap.at(i,j).addActor(new YhormTheGiant(i,j));
