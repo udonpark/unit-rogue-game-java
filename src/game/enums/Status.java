@@ -12,5 +12,6 @@ public enum Status {
     WEAK_TO_STORM_RULER, // only yhorm takes certain damage from storm ruler
     WAS_REVIVED,
     KILLED_YHORM, // proves that the player has killed yhorm
-    KILLED_ALDRICH // proves that the player has killed aldrich
+    KILLED_ALDRICH,// proves that the player has killed aldrich
+    CAN_OPEN_CHEST // called when someone can open chest
 }
