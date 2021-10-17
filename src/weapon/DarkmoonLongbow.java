@@ -26,9 +26,10 @@ public class DarkmoonLongbow extends WeaponItem {
     @Override
     public List<Action> getAllowableActions(){
         Actions actions = new Actions();
-        if (this.holder.hasCapability(Status.RAGE_MODE)){
-            actions.add(new EmberFormAction(this));
-        }
+        // Since implementation of Ember Form are optional, there is no Allowable Actions here
+//        if (this.holder.hasCapability(Status.RAGE_MODE)){
+//            actions.add(new EmberFormAction(this));
+//        }
         return actions.getUnmodifiableActionList();
     }
 

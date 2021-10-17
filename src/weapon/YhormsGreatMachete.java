@@ -30,9 +30,15 @@ public class YhormsGreatMachete extends WeaponItem {
     @Override
     public List<Action> getAllowableActions(){
         Actions actions = new Actions();
-        if (this.holder.hasCapability(Status.RAGE_MODE)){
+        if (this.holder.toString().equals("Unkindled")){ // player can use the ability anytime
             actions.add(new EmberFormAction(this));
         }
+        else if (this.holder.toString().equals("Yhorm The Giant")){
+            if (this.holder.hasCapability(Status.RAGE_MODE)){
+                actions.add(new EmberFormAction(this));
+            }
+        }
+
         return actions.getUnmodifiableActionList();
     }
 
