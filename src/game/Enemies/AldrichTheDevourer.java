@@ -48,23 +48,25 @@ public class AldrichTheDevourer extends LordOfCinder implements Resettable {
             player.addSouls(5000);
         }
         System.out.printf("Aldrich's HP: (%d/%d)\n", this.hitPoints, this.maxHitPoints);
-        if (this.hasCapability(Status.STUNNED)) {
-            this.removeCapability(Status.STUNNED);
-            return new DoNothingAction();
-        }
+
 //        if (this.hitPoints < this.maxHitPoints / 2) {
 //            this.addCapability(Status.RAGE_MODE);
 //            System.out.println("Yhorm in RAGE MODE!");
 //            return new EmberFormAction(DarkmoonLongbow);
 //        }
-        if (distance(map.locationOf(this), map.locationOf(player)) <= 1) {
+        Location here = map.locationOf(this);
+        Location there = map.locationOf(player);
+        int currentDistance = distance(here, there);
+        if (currentDistance <= 3) {
+            for (Exit exit : here.getExits()) {
+                if (exit.getDestination() == there) {
 //            int damage = inventory.get(0).asWeapon().damage();
 //            player.hurt(damage);
-            return new AttackAction(player, "");
+                    return new AttackAction(player, "");
+                }
+            }
         }
-        if (distance(map.locationOf(this), map.locationOf(player)) <= 2) {
-            behaviours.add(new FollowBehaviour(player));
-        }else if (behaviours.size() > 0){
+        else if (behaviours.size() > 0){
             map.moveActor(this, map.at(initialx,initialy));
             for (int i  = 0; i < behaviours.size();i++){behaviours.remove(i);}}
 
