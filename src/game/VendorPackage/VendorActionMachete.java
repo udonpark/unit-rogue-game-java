@@ -25,11 +25,14 @@ public class VendorActionMachete extends VendorAction {
      * @param map The map the actor is on.
      * @return String message to print to menu when it is purchased
      */
-    public String execute(Actor actor, GameMap map, CinderOfYhorm machete) {
+    @Override
+    public String execute(Actor actor, GameMap map) {
         boolean has_cinder = false;
+        CinderOfYhorm cinder = null;
         for (Item item: this.player.getInventory()) {
             if (item.toString().equals("CinderOfLord(Yhorm)")){
                 has_cinder = true;
+                cinder = (CinderOfYhorm) item;
             }
         }
         if (!has_cinder){
@@ -39,7 +42,7 @@ public class VendorActionMachete extends VendorAction {
         SwapWeaponAction swap = new SwapWeaponAction(new YhormsGreatMachete(actor));
         swap.execute(actor, map);
 //        this.player.subtractSouls(500); // TO BE CHANGED
-        this.player.removeItemFromInventory(machete); // as a payment
+        this.player.removeItemFromInventory(cinder); // as a payment
         return "Paid Cinders of Lord and purchased Yhorm's Great Machete";
     }
 
