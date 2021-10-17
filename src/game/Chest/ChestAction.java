@@ -16,10 +16,21 @@ public class ChestAction extends Action {
     Chest chest;
     Location location;
 
+    /**
+     *
+     * @param chest
+     */
     public ChestAction(Chest chest) {
         this.chest = chest;
     }
 
+    /**
+     *
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return
+     * Randomly picks between spawn mimic and drop Tokenofsouls
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         location = chest.getLocation();
