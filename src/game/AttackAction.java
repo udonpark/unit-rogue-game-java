@@ -2,14 +2,13 @@ package game;
 
 import java.util.Random;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actions;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Item;
-import edu.monash.fit2099.engine.Weapon;
+import edu.monash.fit2099.engine.*;
+import game.CindersOfLord.CinderOfAldrich;
+import game.CindersOfLord.CinderOfYhorm;
+import game.Enemies.AldrichTheDevourer;
 import game.Enemies.Skeleton;
 import game.Enemies.Undead;
+import game.Enemies.YhormTheGiant;
 import game.enums.Status;
 
 /**
@@ -65,11 +64,11 @@ public class AttackAction extends Action {
 				drop.execute(target, map);
 			// remove actor
 			//TODO: In A1 scenario, you must not remove a Player from the game yet. What to do, then?
-			if (!(target instanceof Player)){
-				if (target instanceof Undead){
+			if (!(target instanceof Player)) {
+				if (target instanceof Undead) {
 					((Player) actor).addSouls(50);
 				}
-				if (target instanceof Skeleton){
+				if (target instanceof Skeleton) {
 
 					((Player) actor).addSouls(250);
 					Random rand = new Random();
@@ -78,19 +77,32 @@ public class AttackAction extends Action {
 						target.addCapability(Status.WAS_REVIVED);
 						result += System.lineSeparator() + "skeleton was revived";
 						return result;
-					}
-					else{
+					} else {
 						map.removeActor(target);
 					}
 				}
-				map.removeActor(target);
-			}
-			result += System.lineSeparator() + target + " is killed." ;
-		}
+				if (target instanceof YhormTheGiant) {
+					((Player) actor).addCapability(Status.KILLED_YHORM);
+					Location yhorm = map.locationOf(target);
+					map.removeActor(target);
+					yhorm.addItem(new CinderOfYhorm());
+					((Player) actor).addSouls(5000);
+				}
 
+				if (target instanceof AldrichTheDevourer) {
+					((Player) actor).addCapability(Status.KILLED_ALDRICH);
+					Location aldrich = map.locationOf(target);
+					map.removeActor(target);
+					aldrich.addItem(new CinderOfAldrich());
+					((Player) actor).addSouls(5000);
+				}
+				result += System.lineSeparator() + target + " is killed.";
+			}
+
+			return result;
+		}
 		return result;
 	}
-
 	@Override
 	public String menuDescription(Actor actor) {
 		return actor + " attacks " + target + " at " + direction;
