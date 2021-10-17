@@ -17,6 +17,7 @@ public class DarkmoonLongbow extends WeaponItem {
     public DarkmoonLongbow(Actor holder){
         super("Darkmoon Longbow", 'D', 70, "hits", 80);
         this.holder = holder;
+        this.portable = false;
     }
 
     /**
@@ -46,4 +47,5 @@ public class DarkmoonLongbow extends WeaponItem {
             return super.damage();
         }
     }
+
 }
